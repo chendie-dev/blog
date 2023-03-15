@@ -1,0 +1,11 @@
+.register-wrapper{
+    width: 400px;
+    margin: auto;
+}
+.register-wrapper .registItem .ant-btn{
+    width: 100% !important;
+    font-size: 16px;
+}
+.register-wrapper .ant-btn{
+    background-color: #F44336 !important;
+}
