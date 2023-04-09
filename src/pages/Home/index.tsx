@@ -49,7 +49,7 @@ export default function Home() {
         <div className="home-banner " >
           <div className="banner-container">
             <h1 className="blog-title animated zoomIn">
-              个人博客-陈蝶
+              个人博客
             </h1>
             <div className="blog-intro">
               {obj.output} <span className="easy-typed-cursor">|</span>
