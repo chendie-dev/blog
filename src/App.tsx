@@ -10,7 +10,7 @@ export default function App() {
   let outlet = useRoutes(router)
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       {
         outlet
       }
