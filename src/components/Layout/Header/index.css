@@ -2,6 +2,7 @@ header {
     position: fixed;
     z-index: 1;
     width: 100%;
+    min-width: 800px;
     height: 64px;
     padding: 18px 36px !important;
     /* background-color: antiquewhite; */
