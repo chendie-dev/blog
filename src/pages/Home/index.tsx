@@ -72,7 +72,6 @@ export default function Home() {
 
             <div className="card animated zoomIn blog-card mt-5">
               <div className="author-wrapper">
-                {/* <!-- 博主头像 --> */}
                 <Avatar size={110} src={touxiangImg} className="author-avatar" />
 
                 <div style={{ fontSize: '1.375rem', marginTop: '0.625rem' }}>
@@ -81,7 +80,6 @@ export default function Home() {
                 <div style={{ fontSize: '0.875rem' }}>
                   网站简介
                 </div>
-                {/* <!-- 博客信息 --> */}
                 <div className="blog-info-wrapper">
                   <div className="blog-info-data">
                     <div style={{ fontSize: "0.875em" }}>文章</div>
@@ -101,7 +99,6 @@ export default function Home() {
                   </div>
                 </div>
                 <Divider style={{ margin: '10px 0' }} />
-                {/* <!-- 社交信息 --> */}
                 <div className="card-info-social">
                   <a
                     className="mr-5 iconfont iconqq"

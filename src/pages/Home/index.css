@@ -41,7 +41,7 @@
     font-size: 14px;
 }
 
-@media (min-width: 760px) {
+/* @media (min-width: 760px) { */
     .blog-title {
         font-size: 2.5rem;
     }
@@ -55,7 +55,7 @@
     }
 
     .home-container {
-        max-width: 1200px;
+        max-width: 80%;
         margin: auto auto 28px auto;
         padding: 0 5px;
     }
@@ -91,8 +91,8 @@
         font-size: 1.5rem;
         transition: all 0.3s;
     }
-}
-
+/* } */
+/* 
 @media (max-width: 759px) {
     .blog-title {
         font-size: 26px;
@@ -130,7 +130,7 @@
         font-size: 1.25rem;
         transition: all 0.3s;
     }
-}
+} */
 
 .scroll-down {
     cursor: pointer;
