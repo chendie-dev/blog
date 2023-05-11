@@ -1,14 +1,19 @@
-import React,{lazy} from "react";
+import React, { lazy } from "react";
 import Home from "../pages/Home";
-const withLoading=(com:JSX.Element)=>{
+const Message = lazy(() => import('../pages/Message'))
+const withLoading = (com: JSX.Element) => (
     <React.Suspense>
         {com}
     </React.Suspense>
-}
-const routes=[
+)
+const routes = [
     {
-        path:'/',
-        element:<Home/>
+        path: '/',
+        element: <Home />
+    },
+    {
+        path: '/message',
+        element: withLoading(<Message />)
     }
 ]
 export default routes

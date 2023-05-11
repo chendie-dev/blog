@@ -6,8 +6,10 @@ import LoginModel from '../../model/LoginModel'
 import RegisterModel from '../../model/RegisterModel'
 import SearchModel from '../../model/SearchModel'
 import './index.css'
+import { useNavigate } from 'react-router-dom'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
+  const navigateTo=useNavigate()
   const { status } = useAppSelector((state) => ({
     status: state.modelStatus.status
   }))
@@ -87,17 +89,11 @@ const Header: React.FC = () => {
           </div>
           <div className="menus-item">
             <a className="menu-btn" >
-              <i className="iconfont iconlianjie" />
-              友链
-            </a>
-          </div>
-          <div className="menus-item">
-            <a className="menu-btn" >
               <i className="iconfont iconzhifeiji" />
               关于
             </a>
           </div>
-          <div className="menus-item">
+          <div className="menus-item" onClick={()=>navigateTo('/message')}>
             <a className="menu-btn" >
               <i className="iconfont iconpinglunzu" />
               留言

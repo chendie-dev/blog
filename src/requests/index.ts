@@ -5,7 +5,10 @@ import 'nprogress/nprogress.css'
 //创建axios实例
 const instance=axios.create({
     baseURL:"/api",
-    timeout:20000
+    timeout:20000,
+    headers:{
+        'USER-ID':'1'
+    }
 })
 //请求拦截器
 instance.interceptors.request.use(config=>{

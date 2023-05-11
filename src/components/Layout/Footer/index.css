@@ -11,7 +11,7 @@
     animation: Gradient 10s ease infinite;
   }
   .footer-wrap a {
-    color: #eee !important;
+    color: #eee !important
   }
   @keyframes Gradient {
     0% {
