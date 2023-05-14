@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
+import ArticleListDataProvider from './components/Context/ArticleListDateProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ArticleListDataProvider>
+
+        <App />
+      </ArticleListDataProvider>
     </BrowserRouter>
   </Provider>
 );

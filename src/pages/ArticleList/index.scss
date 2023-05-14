@@ -1,0 +1,70 @@
+.aticle-list {
+    .article-card {
+        position: relative;
+        height: 190px;
+        cursor: pointer;
+
+        // padding: 10px;
+        img {
+            width: 40%;
+            height: 100%;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .breif-intro {
+            position: absolute;
+            width: 55%;
+            right: 0;
+            top: 25px;
+            margin-right: 25px;
+
+            &_title {
+                display: inline-block;
+                max-width: 100%;
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+                line-height: 1.4;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+            }
+
+            &_title:hover {
+                color: rgb(135, 186, 240);
+            }
+
+            .article-detail {
+                color: #858585;
+                font-size: 95%;
+                margin-bottom: 5px;
+
+                span {
+                    margin-right: 5px;
+                }
+            }
+
+            &_article-content {
+                line-height: 2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 3;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+            blockquote {
+                background-color: #ececec;
+                border-left: 5px solid #35b378;
+                display: block;
+                line-height: 2em;
+                margin: 20px 0;
+                padding: 0 1.2em;
+            }
+        }
+    }
+    .adm-infinite-scroll{
+        span{
+            font-size: 16px;
+        }
+    }
+}

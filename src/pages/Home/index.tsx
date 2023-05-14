@@ -5,6 +5,8 @@ import Swiper from '../../components/Swiper';
 import touxiangImg from '../../images/touxiang.png'
 import './index.css'
 import { useEffect, useState } from 'react';
+import ArticleList from '../ArticleList';
+import Footer from '../../components/Layout/Footer';
 
 
 export default function Home() {
@@ -61,14 +63,13 @@ export default function Home() {
           </div>
         </div>
         <Row className="home-container">
-          <Col span={17} >
-            <div className="animated zoomIn card" >
+          <Col span={19}  >
+            {/* <div className="animated zoomIn card" >
               <Swiper></Swiper>
-            </div>
-            <div className="card animated zoomIn article-card" >
-            </div>
+            </div> */}
+            <ArticleList/>
           </Col>
-          <Col span={6} push={1}>
+          <Col span={4} push={1} >
 
             <div className="card animated zoomIn blog-card mt-5">
               <div className="author-wrapper">
@@ -135,6 +136,7 @@ export default function Home() {
           </Col>
         </Row>
       </main>
+      <Footer/>
     </>
 
   );

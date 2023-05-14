@@ -7,7 +7,7 @@ import { message } from 'antd';
 export default function Messages() {
   const [messageList, setMessageList] = useState<messageItemType[][]>([])
   const [devideNum, setDevideNum] = useState(7)
-  const [pageNum, setPageNum] = useState(1)
+  const [pageNum, setPageNum] = useState(1)//todo
   const [cntPage, setCntPage] = useState(1)
   const [isShow,setIsShow]=useState(0)
   const [messageVal,setMessageVal]=useState('')

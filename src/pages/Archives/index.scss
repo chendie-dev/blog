@@ -1,0 +1,49 @@
+.banner {
+    background-color: #49b1f5 !important;
+    height: 400px;
+    width: 100%;
+    animation: header-effect 1s;
+    .banner-title {
+        animation: title-scale 1s;
+        position: absolute;
+        top: 12.5rem;
+        padding: 0 0.5rem;
+        width: 100%;
+        font-size: 2.5rem;
+        text-align: center;
+        color: #eee;
+        font-weight: bold !important;
+    }
+
+}
+
+@keyframes header-effect {
+    0% {
+        opacity: 0;
+        filter: alpha(opacity=0);
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-filter: none;
+        filter: none;
+        transform: translateY(0);
+    }
+}
+.time-card{
+    padding: 50px 40px;
+    .dot{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color:#dbdde0;
+        border-radius: 50%;
+        margin-right: 0 !important;
+    }
+    .child-node{
+        margin-bottom: 50px;
+        font-size: 16px;
+        color: #666666;
+    }
+}

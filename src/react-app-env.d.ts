@@ -3,6 +3,8 @@
 /// <reference types="react-dom" />
 declare module 'react-barrage';
 declare module 'rc-bullets'
+declare module 'md-editor-rt';
+
 declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';

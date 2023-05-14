@@ -33,6 +33,7 @@ header {
 
 .menus-item:hover .menus-submenu {
     display: block;
+    z-index: 1;
 }
 .menu-btn:hover:after {
     width: 100%;
@@ -96,3 +97,4 @@ header {
 .nav a,.nav .author{
     color: #eee;
 }
+

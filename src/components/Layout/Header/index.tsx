@@ -31,7 +31,7 @@ const Header: React.FC = () => {
       window.removeEventListener('scroll', scroll)
     }
   }, [])
-
+  
   return (
     <>
       <header className={navClass}>
@@ -43,20 +43,20 @@ const Header: React.FC = () => {
               搜索
             </a>
           </div>
-          <div className="menus-item">
+          <div className="menus-item" onClick={()=>navigateTo('/')}>
             <a className="menu-btn" >
               <i className="iconfont iconzhuye" />
               首页
             </a>
           </div>
-          <div className="menus-item">
+          {/* <div className="menus-item">
             <a className="menu-btn">
               <i className="iconfont iconfaxian" />
               发现
               <i className="iconfont iconxiangxia2 expand" />
             </a>
             <ul className="menus-submenu">
-              <li>
+              <li onClick={()=>navigateTo('/archives')}>
                 <i className="iconfont iconguidang" />
                 归档
               </li>
@@ -69,8 +69,8 @@ const Header: React.FC = () => {
                 标签
               </li>
             </ul>
-          </div>
-          <div className="menus-item">
+          </div> */}
+          {/* <div className="menus-item">
             <a className="menu-btn">
               <i className="iconfont iconqita" />
               娱乐
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                 说说
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="menus-item">
             <a className="menu-btn" >
               <i className="iconfont iconzhifeiji" />
