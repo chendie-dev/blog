@@ -57,26 +57,24 @@ const LoginModel: React.FC<propsType> = (props) => {
                     {/* <!-- 注册和找回密码 --> */}
                     <div className="mt-10 login-tip">
                         <span style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:3}))}>立即注册</span>
-                        <span  style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:4}))} className="float-right">忘记密码?</span>
+                        {/* <span  style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:4}))} className="float-right">忘记密码?</span> */}
                     </div>
                     {/* <!-- 三方登陆-- > */}
-                    <div >
+                    {/* <div >
                         <div className="social-login-title">社交账号登录</div>
                         <div className="social-login-wrapper">
-                            {/* <!-- 微博登录 --> */}
                             <a
                                 className="mr-3 iconfont iconweibo"
                                 style={{ color: "#e05244" }}
 
                             />
-                            {/* <!-- qq登录 --> */}
                             <a
                                 className="iconfont iconqq"
                                 style={{ color: "#00AAEE" }}
 
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div >
             </div >
         </Modal >

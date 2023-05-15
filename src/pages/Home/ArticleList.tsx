@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { InfiniteScroll } from 'antd-mobile';
 import './index.scss'
-import { useArticleListData, useArticleListDataDispatch } from '../../components/Context/ArticleListDateProvider';
 import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requests/api';
 import { FormatData } from '../../Hooks/formatData';
-import ToHtml from '../../Hooks/toHTML';
 import { useNavigate } from 'react-router-dom';
+import { Card, Space } from 'antd';
 export default function ArticleList() {
     const [hasMore, setHasMore] = useState(true)//无限刷新是否还有更多
     const [currentPage, setCurrentPage] = useState(1)
@@ -13,6 +12,7 @@ export default function ArticleList() {
     const navigateTo=useNavigate()
     const initArticleList = async (res: articleListRes) => {
         let articleListContext1: articleListRes = JSON.parse(JSON.stringify(res))
+        let markdownIt=require('markdown-it')()
         let articleList = await Promise.all(
             articleListContext1.data.data.map(async (el) => {
                 let res1 = await Promise.all(
@@ -42,7 +42,7 @@ export default function ArticleList() {
                 });
                 el.categoryId = res2.data.data[0].categoryName
                 el.createTime = FormatData(el.createTime);
-                el.articleContent = ToHtml(el.articleContent)
+                el.articleContent = markdownIt.render(el.articleContent)
                     .replace(/<\/?[^>]*>/g, "")
                     .replace(/[|]*\n/, "")
                     .replace(/&npsp;/gi, "");
@@ -69,10 +69,10 @@ export default function ArticleList() {
     }
     return (
         <>
-            <div className="aticle-list">
+            <Space className="aticle-list" direction="vertical" size="middle" style={{ display: 'flex' }}>
                 {data.map(el => {
                     return (
-                        <div className="card animated zoomIn article-card" key={el.articleId} onClick={()=>navigateTo(`/article/${el.articleId}`)} >
+                        <Card bordered={false} className="card animated zoomIn article-card" key={el.articleId} onClick={()=>navigateTo(`/article/${el.articleId}`)} >
                             <img src={el.articleCoverUrl} alt="" />
                             <div className="breif-intro">
                                 <p className="breif-intro_title">{el.articleTitle}</p>
@@ -90,11 +90,11 @@ export default function ArticleList() {
                                 <div className="breif-intro_article-content" dangerouslySetInnerHTML={{ __html: el.articleContent }}>
                                 </div>
                             </div>
-                        </div>
+                        </Card>
                     )
                 })}
                 <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
-            </div>
+            </Space>
         </>
     )
 }

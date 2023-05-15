@@ -1,17 +1,16 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import './index.scss'
 import { Card, Col, Row, Space } from 'antd'
 import { useLocation } from 'react-router-dom'
 import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requests/api'
 import { FormatData } from '../../Hooks/formatData'
-import ToHtml from '../../Hooks/toHTML'
-import { MdCatalog, MdEditor } from 'md-editor-rt';
+import { MdCatalog, MdPreview } from 'md-editor-rt';
 import 'md-editor-rt/lib/preview.css';
-import { MdPreview } from 'md-editor-rt'
+import Footer from '../../components/Layout/Footer'
 const scrollElement = document.documentElement;
 export default function Article() {
     const location = useLocation()
-    const [data, setData] = useState<articleItemType[]>([])
+    const [data, setData] = useState<articleItemType>({} as articleItemType)
     useLayoutEffect(() => {
         getArticle()
     }, [location.pathname.split('/')[2]])
@@ -63,32 +62,33 @@ export default function Article() {
                 return el
             })
         )
-        setData(articleList)
+        setData(articleList[0])
         console.log('set')
 
     }
     const [id] = useState('preview-only');
-    return (
-        <div className='article' >
-            {data.map(el => {
-                return (
-                    <React.Fragment key={el.articleId}>
-                        <div className="banner" style={{ background: `url(${el.articleCoverUrl}) center center / cover no-repeat` }} >
+    if(JSON.stringify(data) == "{}")return (<></>)
+    else{
+        return (
+            <>
+                <div className='article' >
+                    <React.Fragment key={data.articleId}>
+                        <div className="banner" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
                             <div className="article-detail">
                                 <div className="line">
-                                    <h1 className="article-title">{el.articleTitle}</h1>
+                                    <h1 className="article-title">{data.articleTitle}</h1>
                                 </div>
                                 <div className="line">
                                     <Space  >
-                                        <span className="time"> 发表于{el.createTime}</span>
+                                        <span className="time"> 发表于{data.createTime}</span>
                                         <span>|</span>
-                                        <span>{data[0].categoryId}</span>
+                                        <span>{data.categoryId}</span>
                                     </Space>
                                 </div>
                                 <div className="line">
                                     <Space >
                                         {
-                                            el.tagIds.map((el1, index) => {
+                                            data.tagIds.map((el1, index) => {
                                                 return (
                                                     <span key={index}>{el1}</span>
                                                 )
@@ -102,23 +102,25 @@ export default function Article() {
                             <Row className='animated zoomIn'>
                                 <Col span={15} push={2}>
                                     <Card bordered={false}>
-                                        <MdPreview modelValue={el.articleContent} editorId={id}/>
+                                        <MdPreview modelValue={data.articleContent} editorId={id} />
                                     </Card>
                                 </Col>
                                 <Col span={4} push={3}>
                                     <Card bordered={false} className='fixed-card'>
                                         <div className="right-title">
-                                            <i className="iconfont iconhanbao" style={{fontSize:"16.8px"}} />
-                                            <span style={{marginLeft:"10px",fontWeight:'bolder'}}>目录</span>
+                                            <i className="iconfont iconhanbao" style={{ fontSize: "16.8px" }} />
+                                            <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
                                         </div>
-                                        <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84}/>
+                                        <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} />
                                     </Card>
                                 </Col>
                             </Row>
                         </div>
                     </React.Fragment>
-                )
-            })}
-        </div>
-    )
+    
+                <Footer />
+                </div>
+            </>
+        )
+    }
 }

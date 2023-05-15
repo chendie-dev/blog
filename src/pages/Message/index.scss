@@ -1,21 +1,13 @@
 .homePage {
   width: 100%;
   height: 100vh;
+  padding-top: 70px;
   position: relative;
   background: url('../../images/messageBg.png') center center / cover no-repeat;
-  /** swiper实现的弹幕区域 */
-  .barrageContent {
-    width: 100%;
-    height: calc(100% - 65px);
-    position: absolute;
-    top: 65px;
-    
-    /** 轮播的swiper */
-    .barrageOuter {
-      width: 100%;
-      height: 100px;
 
-    }
+  .screen {
+    height: 100%;
+    width: 100%;
   }
 }
 
@@ -36,12 +28,14 @@
     font-weight: bold !important;
     font-size: 2em !important;
   }
+
   .message-input-wrapper {
     display: flex;
     justify-content: center;
     height: 2.5rem;
     margin-top: 2rem;
   }
+
   .message-input-wrapper input {
     outline: none;
     width: 70%;
@@ -65,60 +59,5 @@
     color: #fff;
     padding: 0 1.25rem;
     border: #fff 1px solid;
-  }
-}
-
-.barrageInner {
-  width: 100%;
-  height: 100%;
-
-  /** 相当于swiper-container */
-  .barrage {
-    width: 100%;
-    height: 100%;
-    // background-color: rgb(151, 191, 227);
-    z-index: 0;
-    pointer-events: none;
-    &>.swiper-wrapper {
-      -webkit-transition-timing-function: linear;
-      /*之前是ease-out*/
-      -moz-transition-timing-function: linear;
-      -ms-transition-timing-function: linear;
-      -o-transition-timing-function: linear;
-      transition-timing-function: linear;
-    }
-
-    /** 相当于swiper-slide */
-    .barrageItem {
-      position: relative;
-      height: 100px;
-      // background-color: aqua;
-
-      .barrageText {
-        /** slide背景图和slide内容的宽度 */
-        height: 50%;
-        // background-color: rgb(255, 102, 0);
-        position: absolute;
-        left: 0;
-        top: 0;
-
-        background: rgb(0, 0, 0, 0.7);
-        border-radius: 100px;
-        color: #fff;
-        padding: 5px 10px 5px 5px;
-        align-items: center;
-        display: flex;
-      }
-
-      /** slide内容 */
-      .barrageText {
-        padding: 0 10px;
-        box-sizing: border-box;
-        font-size: 18px;
-        color: #f8fafb;
-        text-align: center;
-        line-height: 62px;
-      }
-    }
   }
 }

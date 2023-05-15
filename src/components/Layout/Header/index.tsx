@@ -7,13 +7,15 @@ import RegisterModel from '../../model/RegisterModel'
 import SearchModel from '../../model/SearchModel'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
+import { Avatar, Popover } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
-  const navigateTo=useNavigate()
+  const navigateTo = useNavigate()
   const { status } = useAppSelector((state) => ({
     status: state.modelStatus.status
   }))
-  const dispatch=useAppDispatch()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     const scroll = () => {
       let scrollTop =
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
         document.documentElement.scrollTop ||
         document.body.scrollTop;
       if (scrollTop > 60) {
-        setNavClass("nav-fixed");
+        setNavClass("nav-fixed animated slideInDown");
       } else {
         setNavClass("nav");
       }
@@ -31,19 +33,19 @@ const Header: React.FC = () => {
       window.removeEventListener('scroll', scroll)
     }
   }, [])
-  
+
   return (
     <>
       <header className={navClass}>
         <span className="author">网站作者</span>
         <div className="menus">
           <div className="menus-item">
-            <a className="menu-btn" onClick={() => dispatch(handleStatus({status:1}))} >
+            <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 1 }))} >
               <i className="iconfont iconsousuo" />
               搜索
             </a>
           </div>
-          <div className="menus-item" onClick={()=>navigateTo('/')}>
+          <div className="menus-item" onClick={() => navigateTo('/')}>
             <a className="menu-btn" >
               <i className="iconfont iconzhuye" />
               首页
@@ -93,23 +95,30 @@ const Header: React.FC = () => {
               关于
             </a>
           </div>
-          <div className="menus-item" onClick={()=>navigateTo('/message')}>
+          <div className="menus-item" onClick={() => navigateTo('/message')}>
             <a className="menu-btn" >
               <i className="iconfont iconpinglunzu" />
               留言
             </a>
           </div>
-          <div className="menus-item">
+          {/* <div className="menus-item">
             <a className="menu-btn" onClick={() =>dispatch(handleStatus({status:2})) }  >
               <i className="iconfont icondenglu" />
               登录
             </a>
+          </div> */}
+          <div className="menus-item">
+            <Popover content={(<div>
+              <p style={{cursor:'pointer'}} className='exit'>退出</p>
+            </div>)}>
+              <Avatar size="large" style={{ top: '-8px' }} icon={<UserOutlined />} />
+            </Popover>
           </div>
         </div>
-        <SearchModel open={status === 1} onCancel={() => dispatch(handleStatus({status:0}))} />
-        <LoginModel open={status === 2} onCancel={() => dispatch(handleStatus({status:0}))} />
-        <RegisterModel open={status === 3} onCancel={() => dispatch(handleStatus({status:0}))} />
-        <ForgetModel open={status === 4} onCancel={() => dispatch(handleStatus({status:0}))} />
+        <SearchModel open={status === 1} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
+        <LoginModel open={status === 2} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
+        <RegisterModel open={status === 3} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
+        <ForgetModel open={status === 4} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
       </header>
     </>
   )

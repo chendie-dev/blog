@@ -10,6 +10,11 @@ interface messageItemType {
     messageContent: string,
     messageId: number
 }
+interface tagItemType {
+    tagId: string;
+    tagName: string;
+    createTime: string;
+}
 interface articleItemType {
     articleContent: string,
     articleCoverUrl: string,
@@ -20,6 +25,11 @@ interface articleItemType {
     createTime: string,
     rank: number,
     tagIds: string[]
+}
+interface categoryItemType {
+    categoryId: string,
+    categoryName: string,
+    createTime: string
 }
 type idRes = defaultResType<{ id: string }>
 type messageListRes = defaultResType<{ data: messageItemType[], totalPage: number }>
