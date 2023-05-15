@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 const Message = lazy(() => import('../pages/Message'))
 const Archives = lazy(() => import('../pages/Archives'))
 const Article=lazy(()=>import('../pages/Article'))
+const About=lazy(()=>import('../pages/About'))
 const withLoading = (com: JSX.Element) => (
     <React.Suspense>
         {com}
@@ -24,6 +25,10 @@ const routes = [
     {
         path:'/article/:id',
         element:withLoading(<Article/>)
-    }
+    },
+    {
+        path:'/about',
+        element:withLoading(<About/>)
+    },
 ]
 export default routes

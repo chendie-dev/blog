@@ -89,7 +89,7 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </div> */}
-          <div className="menus-item">
+          <div className="menus-item" onClick={()=>navigateTo('/about')}>
             <a className="menu-btn" >
               <i className="iconfont iconzhifeiji" />
               关于

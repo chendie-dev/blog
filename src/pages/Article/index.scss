@@ -30,7 +30,13 @@
 
 
     }
-
+    .banner::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(117, 116, 116, 0.3)
+    }
     .content {
         margin:25px;
 
@@ -65,13 +71,7 @@
         }
     }
 
-    .banner::after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background: rgba(117, 116, 116, 0.3)
-    }
+    
 
     @keyframes header-effect {
         0% {

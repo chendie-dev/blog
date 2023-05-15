@@ -22,7 +22,7 @@ export default function Article() {
             queryParam: {
                 isDelete: false,
                 articleId: location.pathname.split('/')[2],
-                articleStatus:1
+                articleStatus: 1
             }
         })
         if (res.code !== 200) return
@@ -68,58 +68,55 @@ export default function Article() {
 
     }
     const [id] = useState('preview-only');
-    if(JSON.stringify(data) == "{}")return (<></>)
-    else{
+    if (JSON.stringify(data) === "{}") return (<></>)
+    else {
         return (
             <>
                 <div className='article' >
-                    <React.Fragment key={data.articleId}>
-                        <div className="banner" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
-                            <div className="article-detail">
-                                <div className="line">
-                                    <h1 className="article-title">{data.articleTitle}</h1>
-                                </div>
-                                <div className="line">
-                                    <Space  >
-                                        <span className="time"> 发表于{data.createTime}</span>
-                                        <span>|</span>
-                                        <span>{data.categoryId}</span>
-                                    </Space>
-                                </div>
-                                <div className="line">
-                                    <Space >
-                                        {
-                                            data.tagIds.map((el1, index) => {
-                                                return (
-                                                    <span key={index}>{el1}</span>
-                                                )
-                                            })
-                                        }
-                                    </Space>
-                                </div>
+                    <div className="banner" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
+                        <div className="article-detail">
+                            <div className="line">
+                                <h1 className="article-title">{data.articleTitle}</h1>
+                            </div>
+                            <div className="line">
+                                <Space  >
+                                    <span className="time"> 发表于{data.createTime}</span>
+                                    <span>|</span>
+                                    <span>{data.categoryId}</span>
+                                </Space>
+                            </div>
+                            <div className="line">
+                                <Space >
+                                    {
+                                        data.tagIds.map((el1, index) => {
+                                            return (
+                                                <span key={index}>{el1}</span>
+                                            )
+                                        })
+                                    }
+                                </Space>
                             </div>
                         </div>
-                        <div className="content">
-                            <Row className='animated zoomIn'>
-                                <Col span={15} push={2}>
-                                    <Card bordered={false}>
-                                        <MdPreview modelValue={data.articleContent} editorId={id} />
-                                    </Card>
-                                </Col>
-                                <Col span={4} push={3}>
-                                    <Card bordered={false} className='fixed-card'>
-                                        <div className="right-title">
-                                            <i className="iconfont iconhanbao" style={{ fontSize: "16.8px" }} />
-                                            <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
-                                        </div>
-                                        <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />
-                                    </Card>
-                                </Col>
-                            </Row>
-                        </div>
-                    </React.Fragment>
-    
-                <Footer />
+                    </div>
+                    <div className="content">
+                        <Row className='animated zoomIn'>
+                            <Col span={15} push={2}>
+                                <Card bordered={false}>
+                                    <MdPreview modelValue={data.articleContent} editorId={id} />
+                                </Card>
+                            </Col>
+                            <Col span={4} push={3}>
+                                <Card bordered={false} className='fixed-card'>
+                                    <div className="right-title">
+                                        <i className="iconfont iconhanbao" style={{ fontSize: "16.8px" }} />
+                                        <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
+                                    </div>
+                                    <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />
+                                </Card>
+                            </Col>
+                        </Row>
+                    </div>
+                    <Footer />
                 </div>
             </>
         )
