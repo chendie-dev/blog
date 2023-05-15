@@ -101,19 +101,19 @@ const Header: React.FC = () => {
               留言
             </a>
           </div>
-          {/* <div className="menus-item">
+          <div className="menus-item">
             <a className="menu-btn" onClick={() =>dispatch(handleStatus({status:2})) }  >
               <i className="iconfont icondenglu" />
               登录
             </a>
-          </div> */}
-          <div className="menus-item">
+          </div>
+          {/* <div className="menus-item">
             <Popover content={(<div>
               <p style={{cursor:'pointer'}} className='exit'>退出</p>
             </div>)}>
               <Avatar size="large" style={{ top: '-8px' }} icon={<UserOutlined />} />
             </Popover>
-          </div>
+          </div> */}
         </div>
         <SearchModel open={status === 1} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
         <LoginModel open={status === 2} onCancel={() => dispatch(handleStatus({ status: 0 }))} />

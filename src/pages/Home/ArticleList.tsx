@@ -38,6 +38,7 @@ export default function ArticleList() {
                     queryParam: {
                         isDelete: false,
                         categoryId: el.categoryId,
+                        
                     }
                 });
                 el.categoryId = res2.data.data[0].categoryName

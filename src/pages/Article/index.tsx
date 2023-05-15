@@ -21,7 +21,8 @@ export default function Article() {
             pageSize: 1,
             queryParam: {
                 isDelete: false,
-                articleId: location.pathname.split('/')[2]
+                articleId: location.pathname.split('/')[2],
+                articleStatus:1
             }
         })
         if (res.code !== 200) return
@@ -111,7 +112,7 @@ export default function Article() {
                                             <i className="iconfont iconhanbao" style={{ fontSize: "16.8px" }} />
                                             <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
                                         </div>
-                                        <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} />
+                                        <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />
                                     </Card>
                                 </Col>
                             </Row>
