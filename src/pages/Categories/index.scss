@@ -1,0 +1,86 @@
+.categories {
+    .banner {
+        position: relative;
+        height: 400px;
+        width: 100%;
+        animation: header-effect 1s;
+        background: url('../../images/test.jpeg') center center / cover no-repeat;
+
+        .article-detail {
+            position: absolute;
+            top: 12.5rem;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+            color: #ffff;
+
+            .article-title {
+                animation: title-scale 1s;
+                padding: 0 0.5rem;
+                width: 100%;
+                font-size: 2.5rem;
+                font-weight: bold !important;
+
+            }
+
+        }
+
+
+    }
+
+    .banner::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(117, 116, 116, 0.3)
+    }
+
+    .content {
+        margin: 25px 0;
+
+        .category-list {
+            margin: 0 1.8rem;
+            list-style: none;
+            padding-left: 150px;
+            .category-list-item {
+                width: 45%;
+                padding: 8px 1.8rem 8px 0;
+                float: left;
+                margin: 0 10px;
+                margin-bottom: 5px;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .category-list-item:before {
+                display: inline-block;
+                position: relative;
+                left: -0.75rem;
+                width: 12px;
+                height: 12px;
+                border: 0.2rem solid #49b1f5;
+                border-radius: 50%;
+                background: #fff;
+                content: "";
+                transition-duration: 0.3s;
+            }
+
+            .category-list-item:hover:before {
+                border: 0.2rem solid #ff7242;
+            }
+
+            .category-list-item span:hover {
+                transition: all 0.3s;
+                color: #8e8cd8;
+            }
+
+            .category-list-item span:not(:hover) {
+                transition: all 0.3s;
+            }
+        }
+
+
+    }
+
+}

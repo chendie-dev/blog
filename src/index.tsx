@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <ConfigProvider
-    theme={{ token: { colorPrimary: '#27a7ca', borderRadius: 43 } }}>
+    theme={{ token: { colorPrimary: '#2196F3', borderRadius: 43 } }}>
     <Provider store={store}>
       <BrowserRouter>
         <ArticleListDataProvider>

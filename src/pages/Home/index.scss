@@ -113,9 +113,7 @@
         padding-bottom: 23%;
         cursor: pointer;
         
-        .ant-card-body:hover{
-            background-color: #f5f6f7;
-        }
+        
         // padding: 10px;
         img {
             width: 32%;
@@ -173,6 +171,9 @@
                 padding: 0 1.2em;
             }
         }
+    }
+    .article-card:hover{
+        background-color: #f5f6f7;
     }
     .adm-infinite-scroll{
         span{

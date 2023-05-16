@@ -7,6 +7,8 @@ import { FormatData } from '../../Hooks/formatData'
 import { MdCatalog, MdPreview } from 'md-editor-rt';
 import 'md-editor-rt/lib/preview.css';
 import Footer from '../../components/Layout/Footer'
+import MyIcon from '../../components/MyIcon'
+import { MenuOutlined } from '@ant-design/icons'
 const scrollElement = document.documentElement;
 export default function Article() {
     const location = useLocation()
@@ -73,20 +75,23 @@ export default function Article() {
         return (
             <>
                 <div className='article' >
-                    <div className="banner" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
+                    <div className="banner animated zoomIn" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
                         <div className="article-detail">
                             <div className="line">
                                 <h1 className="article-title">{data.articleTitle}</h1>
                             </div>
                             <div className="line">
                                 <Space  >
+                                    <MyIcon type='icon-rili' />
                                     <span className="time"> 发表于{data.createTime}</span>
                                     <span>|</span>
+                                    <MyIcon type='icon-category_fill' />
                                     <span>{data.categoryId}</span>
                                 </Space>
                             </div>
                             <div className="line">
                                 <Space >
+                                    <MyIcon type='icon-tag-fill' />
                                     {
                                         data.tagIds.map((el1, index) => {
                                             return (
@@ -108,7 +113,7 @@ export default function Article() {
                             <Col span={4} push={3}>
                                 <Card bordered={false} className='fixed-card'>
                                     <div className="right-title">
-                                        <i className="iconfont iconhanbao" style={{ fontSize: "16.8px" }} />
+                                        <MenuOutlined />
                                         <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
                                     </div>
                                     <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />

@@ -7,8 +7,9 @@ import RegisterModel from '../../model/RegisterModel'
 import SearchModel from '../../model/SearchModel'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
-import { Avatar, Popover } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { Avatar, Popover, Space } from 'antd'
+import { DownOutlined, HomeFilled, PlayCircleOutlined, UserOutlined } from '@ant-design/icons'
+import MyIcon from '../../MyIcon'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
   const navigateTo = useNavigate()
@@ -41,37 +42,47 @@ const Header: React.FC = () => {
         <div className="menus">
           <div className="menus-item">
             <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 1 }))} >
-              <i className="iconfont iconsousuo" />
-              搜索
+              <Space>
+                <MyIcon type='icon-sousuo' />
+                搜索
+              </Space>
             </a>
           </div>
           <div className="menus-item" onClick={() => navigateTo('/')}>
             <a className="menu-btn" >
-              <i className="iconfont iconzhuye" />
-              首页
+              <Space>
+                <HomeFilled />
+                首页
+              </Space>
             </a>
           </div>
-          {/* <div className="menus-item">
+          <div className="menus-item">
             <a className="menu-btn">
-              <i className="iconfont iconfaxian" />
-              发现
-              <i className="iconfont iconxiangxia2 expand" />
+              <Space>
+                <PlayCircleOutlined />
+                发现
+                <DownOutlined />
+              </Space>
             </a>
             <ul className="menus-submenu">
-              <li onClick={()=>navigateTo('/archives')}>
+              {/* <li onClick={()=>navigateTo('/archives')}>
                 <i className="iconfont iconguidang" />
                 归档
+              </li> */}
+              <li onClick={() => navigateTo('/categories')}>
+                <Space>
+                  <MyIcon type='icon-category_fill' />
+                  分类
+                </Space>
               </li>
-              <li>
-                <i className="iconfont iconfenlei" />
-                分类
-              </li>
-              <li>
-                <i className="iconfont iconbiaoqian" />
-                标签
+              <li onClick={() => navigateTo('/tags')}>
+                <Space>
+                  <MyIcon type='icon-tag-fill' />
+                  标签
+                </Space>
               </li>
             </ul>
-          </div> */}
+          </div>
           {/* <div className="menus-item">
             <a className="menu-btn">
               <i className="iconfont iconqita" />
@@ -89,22 +100,28 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </div> */}
-          <div className="menus-item" onClick={()=>navigateTo('/about')}>
+          <div className="menus-item" onClick={() => navigateTo('/about')}>
             <a className="menu-btn" >
-              <i className="iconfont iconzhifeiji" />
-              关于
+              <Space>
+                <MyIcon type='icon-paper-full' />
+                关于
+              </Space>
             </a>
           </div>
           <div className="menus-item" onClick={() => navigateTo('/message')}>
             <a className="menu-btn" >
-              <i className="iconfont iconpinglunzu" />
-              留言
+              <Space>
+                <MyIcon type='icon-liuyan' />
+                留言
+              </Space>
             </a>
           </div>
           <div className="menus-item">
-            <a className="menu-btn" onClick={() =>dispatch(handleStatus({status:2})) }  >
-              <i className="iconfont icondenglu" />
-              登录
+            <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 2 }))}  >
+              <Space>
+                <UserOutlined style={{ fontWeight: 'bolder' }} />
+                登录
+              </Space>
             </a>
           </div>
           {/* <div className="menus-item">

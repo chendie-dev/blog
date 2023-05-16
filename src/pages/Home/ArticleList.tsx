@@ -5,6 +5,7 @@ import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requ
 import { FormatData } from '../../Hooks/formatData';
 import { useNavigate } from 'react-router-dom';
 import { Card, Space } from 'antd';
+import MyIcon from '../../components/MyIcon';
 export default function ArticleList() {
     const [hasMore, setHasMore] = useState(true)//无限刷新是否还有更多
     const [currentPage, setCurrentPage] = useState(1)
@@ -78,9 +79,10 @@ export default function ArticleList() {
                             <div className="breif-intro">
                                 <p className="breif-intro_title">{el.articleTitle}</p>
                                 <div className='article-detail'>
-                                    <span className="article-detail_time">{el.createTime}</span>
-                                    <span className="article-detail_category">{el.categoryId}</span>
+                                    <span className="article-detail_time"><MyIcon type='icon-rili'/>{el.createTime}</span>
+                                    <span className="article-detail_category"><MyIcon type='icon-category_fill'/> {el.categoryId}</span>
                                     <span className="article-detail_tags">
+                                        <MyIcon type='icon-tag-fill'/>
                                         {el.tagIds.map((el1, key) => {
                                             return (
                                                 <span key={key}>{el1}</span>

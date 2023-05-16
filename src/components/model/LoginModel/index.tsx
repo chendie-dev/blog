@@ -3,6 +3,7 @@ import { Button, Modal, Form, Input } from 'antd'
 import './index.css'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/storeHook'
 import { handleStatus } from '../../../store/ModelStatusSlice'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 interface propsType {
     open: boolean,
     onCancel: any
@@ -33,20 +34,18 @@ const LoginModel: React.FC<propsType> = (props) => {
                     >
                         <Form.Item
                             className='loginItem'
-                            label="邮箱"
                             name="email"
-                            rules={[{ required: true, message: '邮箱号格式不正确' }]}
+                            rules={[{ required: true, message: '邮箱/用户名' }]}
                         >
-                            <Input placeholder="请输入您的邮箱"/>
+                            <Input prefix={<UserOutlined />} placeholder="邮箱/用户名"/>
                         </Form.Item>
 
                         <Form.Item
                             className='loginItem'
-                            label="密码"
                             name="password"
-                            rules={[{ required: true, message: '密码格式不正确' }]}
+                            rules={[{ required: true, message: '密码不能为空' },{ pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: '至少八个字符，至少一个字母和一个数字组成' }]}
                         >
-                            <Input.Password placeholder="请输入您的密码" />
+                            <Input.Password prefix={<LockOutlined />} placeholder="请输入你的密码" />
                         </Form.Item>
                         <Form.Item className='loginItem'>
                             <Button type="primary" htmlType="submit">

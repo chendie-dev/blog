@@ -1,5 +1,5 @@
 import { Col, Row, Avatar, Divider, Card, Space } from 'antd';
-import { DownOutlined, LineChartOutlined } from '@ant-design/icons'
+import { DownOutlined, GithubFilled, LineChartOutlined, QqCircleFilled } from '@ant-design/icons'
 import EasyTyper from "easy-typer-js";
 import touxiangImg from '../../images/touxiang.png'
 import './index.scss'
@@ -97,17 +97,19 @@ export default function Home() {
                   </div>
                   <Divider style={{ margin: '10px 0' }} />
                   <div className="card-info-social">
-                    <a
+                    {/* <a
                       className="mr-5 iconfont iconqq"
                       target="_blank"
                       href=""
                       style={{ display: 'inline-block', marginRight: '20px' }}
-                    />
-                    <a
+                    /> */}
+                    <QqCircleFilled className="mr-5" style={{marginRight: '20px',fontSize:24}} />
+                    <GithubFilled className="mr-5" style={{fontSize:24}}/>
+                    {/* <a
                       target="_blank"
                       href=""
                       className="mr-5 iconfont icongithub"
-                    />
+                    /> */}
                   </div>
                 </div>
               </Card>
