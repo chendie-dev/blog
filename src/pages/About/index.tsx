@@ -6,8 +6,8 @@ export default function About() {
         <div className='about'>
             {/* style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} */}
             <div className="banner"   >
-                <div className="article-detail">
-                    <h1 className="article-title">关于我</h1>
+                <div className="banner-detail">
+                    <h1 className="banner-title">关于我</h1>
                 </div>
             </div>
             <Row className='content'>

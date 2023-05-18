@@ -26,9 +26,9 @@ export default function Categories() {
   else return (
     <div className='categories'>
       {/* style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} */}
-      <div className="banner animated slideInDown"   >
-        <div className="article-detail">
-          <h1 className="article-title">分类</h1>
+      <div className="banner"   >
+        <div className="banner-detail">
+          <h1 className="banner-title">分类</h1>
         </div>
       </div>
       <Row className='content animated zoomIn'>
@@ -38,7 +38,7 @@ export default function Categories() {
               {
                 categoriesList.map(el => {
                   return (
-                    <li className="category-list-item" key={el.categoryId} onClick={()=>navigateTo(`/categories/${el.categoryId}`)}>
+                    <li className="category-list-item" key={el.categoryId} onClick={()=>navigateTo(`/categories/${el.categoryId}`,{state:el.categoryName})}>
                       <span>{el.categoryName}</span>
                     </li>)
                 })

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/storeHook'
 import { handleStatus } from '../../../store/ModelStatusSlice'
-import ForgetModel from '../../model/ForgetModel'
 import LoginModel from '../../model/LoginModel'
 import RegisterModel from '../../model/RegisterModel'
 import SearchModel from '../../model/SearchModel'
@@ -135,7 +134,6 @@ const Header: React.FC = () => {
         <SearchModel open={status === 1} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
         <LoginModel open={status === 2} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
         <RegisterModel open={status === 3} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
-        <ForgetModel open={status === 4} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
       </header>
     </>
   )

@@ -73,57 +73,53 @@ export default function Article() {
     if (JSON.stringify(data) === "{}") return (<></>)
     else {
         return (
-            <>
-                <div className='article' >
-                    <div className="banner animated zoomIn" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
-                        <div className="article-detail">
-                            <div className="line">
-                                <h1 className="article-title">{data.articleTitle}</h1>
-                            </div>
-                            <div className="line">
-                                <Space  >
-                                    <MyIcon type='icon-rili' />
-                                    <span className="time"> 发表于{data.createTime}</span>
-                                    <span>|</span>
-                                    <MyIcon type='icon-category_fill' />
-                                    <span>{data.categoryId}</span>
-                                </Space>
-                            </div>
-                            <div className="line">
-                                <Space >
-                                    <MyIcon type='icon-tag-fill' />
-                                    {
-                                        data.tagIds.map((el1, index) => {
-                                            return (
-                                                <span key={index}>{el1}</span>
-                                            )
-                                        })
-                                    }
-                                </Space>
-                            </div>
+            <div className='article' >
+                <div className="banner animated zoomIn" style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} >
+                    <div className="banner-detail">
+                        <div className="line">
+                            <h1 className="banner-title">{data.articleTitle}</h1>
+                        </div>
+                        <div className="line">
+                            <Space  >
+                                <MyIcon type='icon-rili' />
+                                <span className="time"> 发表于{data.createTime}</span>
+                                <span>|</span>
+                                <MyIcon type='icon-category_fill' />
+                                <span>{data.categoryId}</span>
+                            </Space>
+                        </div>
+                        <div className="line">
+                            <Space >
+                                <MyIcon type='icon-tag-fill' />
+                                {
+                                    data.tagIds.map((el1, index) => {
+                                        return (
+                                            <span key={index}>{el1}</span>
+                                        )
+                                    })
+                                }
+                            </Space>
                         </div>
                     </div>
-                    <div className="content">
-                        <Row className='animated zoomIn'>
-                            <Col span={15} push={2}>
-                                <Card bordered={false}>
-                                    <MdPreview modelValue={data.articleContent} editorId={id} />
-                                </Card>
-                            </Col>
-                            <Col span={4} push={3}>
-                                <Card bordered={false} className='fixed-card'>
-                                    <div className="right-title">
-                                        <MenuOutlined />
-                                        <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
-                                    </div>
-                                    <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />
-                                </Card>
-                            </Col>
-                        </Row>
-                    </div>
-                    <Footer />
                 </div>
-            </>
+                <Row className='content'>
+                    <Col span={15} push={2}>
+                        <Card bordered={false} className='animated zoomIn'>
+                            <MdPreview modelValue={data.articleContent} editorId={id} />
+                        </Card>
+                    </Col>
+                    <Col span={4} push={3}>
+                        <Card bordered={false} className='fixed-card animated zoomIn'>
+                            <div className="right-title">
+                                <MenuOutlined />
+                                <span style={{ marginLeft: "10px", fontWeight: 'bolder' }}>目录</span>
+                            </div>
+                            <MdCatalog editorId={id} scrollElement={scrollElement} className='catalog' scrollElementOffsetTop={84} offsetTop={104} />
+                        </Card>
+                    </Col>
+                </Row>
+                <Footer />
+            </div>
         )
     }
 }

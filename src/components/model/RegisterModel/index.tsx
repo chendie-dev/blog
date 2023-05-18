@@ -41,7 +41,7 @@ const RegisterModel: React.FC<propsType> = (props) => {
     <Modal {...props} footer={[]}>
       <div className="register-wrapper">
         <Form
-          name="basic"
+          name="register"
           initialValues={{ remember: true }}
           onFinish={onFinish}
           autoComplete="off"
@@ -95,7 +95,7 @@ const RegisterModel: React.FC<propsType> = (props) => {
             </Button>
           </Form.Item>
         </Form>
-        <div className="toLogin">已有账号？<span style={{ color: '#2196F3', cursor: 'pointer' }} onClick={() => dispatch(handleStatus({ status: 2 }))}>登陆</span></div>
+        <div className="toLogin">已有账号？<a style={{ color: '#2196F3', cursor: 'pointer' }} onClick={() => dispatch(handleStatus({ status: 2 }))}>登陆</a></div>
       </div>
     </Modal>
   )

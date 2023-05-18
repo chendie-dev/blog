@@ -26,7 +26,7 @@ const LoginModel: React.FC<propsType> = (props) => {
             <div className="login-container" style={{ borderRadius: "4px" }}>
                 <div className="login-wrapper">
                     <Form
-                        name="basic"
+                        name="login"
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
@@ -55,7 +55,7 @@ const LoginModel: React.FC<propsType> = (props) => {
                     </Form>
                     {/* <!-- 注册和找回密码 --> */}
                     <div className="mt-10 login-tip">
-                        <span style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:3}))}>立即注册</span>
+                        <a style={{color:'rgb(33, 150, 243)'}} onClick={()=>dispatch(handleStatus({status:3}))}>立即注册</a>
                         {/* <span  style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:4}))} className="float-right">忘记密码?</span> */}
                     </div>
                     {/* <!-- 三方登陆-- > */}

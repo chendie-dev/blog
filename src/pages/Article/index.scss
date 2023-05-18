@@ -1,90 +1,76 @@
 .article {
+    .line {
+        margin-bottom: 10px;
+    }
 
-    .banner {
-        position: relative;
-        height: 400px;
-        width: 100%;
-        animation: header-effect 1s;
 
-        .article-detail {
-            position: absolute;
-            top: 12.5rem;
-            z-index: 1;
-            text-align: center;
+    .fixed-card {
+        position: sticky;
+        top: 84px;
+
+        .ant-card-body {
+
+            padding: 0;
+            padding-bottom: 24px;
+        }
+
+        .right-title {
+            height: 45px;
+            line-height: 45px;
+            background-color: #49b1f5;
+            border-radius: 8px 8px 0 0;
+            padding-left: 32px;
+            color: white;
+        }
+    }
+
+    .catalog {
+        margin-left: 24px;
+        margin-top: 24px;
+    }
+}
+
+.article-list {
+    a:hover{
+        color: #8e8cd8 !important;
+    }
+    li {
+        float: left;
+        width: 30%;
+        margin-left: 25px;
+        margin-top: 25px;
+
+        img {
             width: 100%;
-            color: #ffff;
+        }
 
-            .article-title {
-                animation: title-scale 1s;
-                padding: 0 0.5rem;
-                width: 100%;
-                font-size: 2.5rem;
-                font-weight: bold !important;
+        .article-item-info {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #65615f;
+            a {
+                color: #65615f;
 
-            }
-
-            .line {
-                margin-bottom: 10px;
             }
         }
 
-
-    }
-    .banner::after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background: rgba(117, 116, 116, 0.3)
-    }
-    .content {
-        margin:25px;
-
-        .fixed-card {
-            position: sticky;
-            top:84px;
-            .ant-card-body {
-
-                padding: 0;
-                padding-bottom: 24px;
-            }
-
-            .right-title {
-                height: 45px;
-                line-height: 45px;
-                background-color: #49b1f5;
-                border-radius: 8px 8px 0 0;
-                padding-left: 32px;
-                color: white;
+        .tag-wrapper {
+            .tag-btn {
+                display: inline-block;
+                color: #fff !important;
+                font-size: 0.725rem;
+                line-height: 22px;
+                height: 22px;
+                border-radius: 10px;
+                padding: 0 12px !important;
+                background: linear-gradient(to right, #bf4643 0%, #6c9d8f 100%);
+                opacity: 0.6;
+                margin-right: 0.5rem;
+                margin-top: 0.5rem;
+                cursor: pointer;
             }
         }
 
-        .catalog {
-            margin-left: 24px;
-            margin-top: 24px;
-            // .md-editor-catalog-active>span {
-            //     color: #49b1f5;
-            // }
-            // .md-editor-catalog-link:hover{
-            //     color: #49b1f5;
-            // }
-        }
     }
 
-    
-
-    @keyframes header-effect {
-        0% {
-            opacity: 0;
-            filter: alpha(opacity=0);
-            transform: translateY(-50px);
-        }
-
-        100% {
-            opacity: 1;
-            -webkit-filter: none;
-            filter: none;
-            transform: translateY(0);
-        }
-    }
 }

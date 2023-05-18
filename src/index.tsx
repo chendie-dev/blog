@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'reset-css'
+// import 'reset-css'
 import 'animate.css'
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';

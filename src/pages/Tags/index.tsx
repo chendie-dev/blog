@@ -26,9 +26,9 @@ export default function Tags() {
     else return (
         <div className='tags'>
             {/* style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} */}
-            <div className="banner animated slideInDown"   >
-                <div className="article-detail">
-                    <h1 className="article-title">标签</h1>
+            <div className="banner"   >
+                <div className="banner-detail">
+                    <h1 className="banner-title">标签</h1>
                 </div>
             </div>
             <Row className='content animated zoomIn'>
@@ -38,7 +38,7 @@ export default function Tags() {
                            {
                             tagList.map(el=>{
                                 return (
-                                    <span key={el.tagId} onClick={()=>navigateTo(`/tags/${el.tagId}`)}>{el.tagName}</span>
+                                    <a key={el.tagId} onClick={()=>navigateTo(`/tags/${el.tagId}`,{state:el.tagName})}>{el.tagName}</a>
                                 )
                             })
                            }
