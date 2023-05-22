@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Modal, Form, Input } from 'antd'
+import { Button, Modal, Form, Input, message } from 'antd'
 import './index.css'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/storeHook'
 import { handleStatus } from '../../../store/ModelStatusSlice'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { loginReq } from '../../../requests/api'
+import { useUserDataDispatch } from '../../UserDataProvider'
 interface propsType {
     open: boolean,
     onCancel: any
@@ -12,15 +14,18 @@ const LoginModel: React.FC<propsType> = (props) => {
     const {status}=useAppSelector(state=>({
         status:state.modelStatus.status
     }))
+    const userDispatch=useUserDataDispatch()
     const dispatch=useAppDispatch()
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+    const onFinish = async (values: {password:string ,username:string }) => {
+        let res=await loginReq(values)
+        if(res.code!==200){
+            message.error('用户名/邮箱或密码错误')
+            return
+        }
+        localStorage.setItem('token',res.data)
+        dispatch(handleStatus({status:0}))
+        userDispatch('getuser')
     };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
-
     return (
         <Modal {...props} footer={[]} >
             <div className="login-container" style={{ borderRadius: "4px" }}>
@@ -29,12 +34,11 @@ const LoginModel: React.FC<propsType> = (props) => {
                         name="login"
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
                         <Form.Item
                             className='loginItem'
-                            name="email"
+                            name="username"
                             rules={[{ required: true, message: '邮箱/用户名' }]}
                         >
                             <Input prefix={<UserOutlined />} placeholder="邮箱/用户名"/>

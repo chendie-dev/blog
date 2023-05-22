@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar, Popover, Space } from 'antd'
 import { DownOutlined, HomeFilled, PlayCircleOutlined, UserOutlined } from '@ant-design/icons'
 import MyIcon from '../../MyIcon'
+import { useUserData, useUserDataDispatch } from '../../UserDataProvider'
+import { logoutReq } from '../../../requests/api'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
   const navigateTo = useNavigate()
@@ -16,6 +18,9 @@ const Header: React.FC = () => {
     status: state.modelStatus.status
   }))
   const dispatch = useAppDispatch()
+  const userData=useUserData()
+  const userDispatch=useUserDataDispatch()
+  const [imgUrl,setImgUrl]=useState('')
   useEffect(() => {
     const scroll = () => {
       let scrollTop =
@@ -33,7 +38,21 @@ const Header: React.FC = () => {
       window.removeEventListener('scroll', scroll)
     }
   }, [])
-
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      userDispatch('getuser')
+    }
+    
+  },[])
+  useEffect(()=>{
+    setImgUrl(userData.avatarUrl)
+  },[userData])
+  const logout=async ()=>{
+    localStorage.removeItem('token')
+    userDispatch('getuser')
+    await logoutReq()
+    setImgUrl('')
+  }
   return (
     <>
       <header className={navClass}>
@@ -115,22 +134,26 @@ const Header: React.FC = () => {
               </Space>
             </a>
           </div>
-          <div className="menus-item">
-            <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 2 }))}  >
-              <Space>
-                <UserOutlined style={{ fontWeight: 'bolder' }} />
-                登录
-              </Space>
-            </a>
-          </div>
-          {/* <div className="menus-item">
-            <Popover content={(<div>
-              <p style={{cursor:'pointer'}} className='exit'>退出</p>
-            </div>)}>
-              <Avatar size="large" style={{ top: '-8px' }} icon={<UserOutlined />} />
-            </Popover>
-          </div> */}
+          {
+            imgUrl==='' ?
+              (<div className="menus-item">
+                <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 2 }))}  >
+                  <Space>
+                    <UserOutlined style={{ fontWeight: 'bolder' }} />
+                    登录
+                  </Space>
+                </a>
+              </div>) :
+              (<div className="menus-item">
+                <Popover content={(<div>
+                  <p style={{ cursor: 'pointer' }} className='exit' onClick={()=>logout()}>退出</p>
+                </div>)}>
+                  <Avatar size="large" src={imgUrl} style={{ top: '-8px' }} icon={<UserOutlined />} />
+                </Popover>
+              </div>)
+          }
         </div>
+
         <SearchModel open={status === 1} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
         <LoginModel open={status === 2} onCancel={() => dispatch(handleStatus({ status: 0 }))} />
         <RegisterModel open={status === 3} onCancel={() => dispatch(handleStatus({ status: 0 }))} />

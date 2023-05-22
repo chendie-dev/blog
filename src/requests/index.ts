@@ -6,13 +6,14 @@ import 'nprogress/nprogress.css'
 const instance=axios.create({
     baseURL:"/api",
     timeout:20000,
-    headers:{
-        'USER-ID':'1'
-    }
+    // headers:{
+    //     'USER-ID':'1'
+    // }
 })
 //请求拦截器
 instance.interceptors.request.use(config=>{
     NProgress.start()
+    config.headers.token=localStorage.getItem('token')
     return config
 },err=>{
     return Promise.reject(err)

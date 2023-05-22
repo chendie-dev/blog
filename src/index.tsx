@@ -9,6 +9,7 @@ import App from './App';
 import store from './store';
 import ArticleListDataProvider from './components/Context/ArticleListDateProvider';
 import { ConfigProvider } from 'antd';
+import UserDataProvider from './components/UserDataProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,8 +20,10 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <ArticleListDataProvider>
+          <UserDataProvider>
 
           <App />
+          </UserDataProvider>
         </ArticleListDataProvider>
       </BrowserRouter>
     </Provider>

@@ -17,3 +17,5 @@ export const logoutReq=():Promise<logOutRes>=>request.post('/auth/logout')
 export const registerReq=(params:registerParams):Promise<idRes>=>request.post('/auth/register',params)
 //获取验证码
 export const getCaptchaReq=(params:{mail:string})=>request.post('/sms/captcha/send',params)
+//获取用户信息
+export const getUserReq = (): Promise<userRes> => request.post('/auth/getUserInfo')

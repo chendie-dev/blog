@@ -39,7 +39,7 @@ export default function Demo() {
             }
         })
         if (res.code !== 200) return
-        console.log(res)
+        // console.log(res)
         setBullet(res.data.data)
     }
     const addMessage = async () => {
@@ -49,6 +49,7 @@ export default function Demo() {
         }
         let res = await addMessageReq({ messageContent: messageVal })
         if (res.code !== 200) return
+        message.success('留言成功，审核中！')
         setMessageVal('')
     }
     return (
@@ -63,7 +64,7 @@ export default function Demo() {
                     <input
                         placeholder="说点什么吧"
                         onFocus={() => setIsShow(1)}
-                        // value={bullet}
+                        value={messageVal}
                         onChange={(e) => setMessageVal(e.target.value)}
                         onKeyUp={(e) => e.keyCode === 13 ? addMessage() : ''}
                     />
