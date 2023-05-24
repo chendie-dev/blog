@@ -42,6 +42,7 @@ interface userItemType {
     userId: string,
     username: string
 }
+
 type idRes = defaultResType<{ id: string }>
 type messageListRes = defaultResType<{ data: messageItemType[], totalPage: number }>
 type articleListRes = defaultResType<{data:articleItemType[], totalPage: number }>
@@ -50,3 +51,4 @@ type categoryListRes = defaultResType<{ data: categoryItemType[], totalPage: num
 type logInRes = defaultResType<string>
 type logOutRes=defaultResType<null>
 type userRes=defaultResType<userItemType>
+type booleanRes=defaultResType<boolean>

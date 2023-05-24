@@ -29,7 +29,7 @@ export default function ArticleList() {
       }
     })
     if (res.code !== 200) return
-    console.log('get', res)
+    // console.log('get', res)
     setCurrentPage(currentPage + 1)
     initArticleList(res)
     setHasMore(res.data.data.length > 0)

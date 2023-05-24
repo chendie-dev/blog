@@ -1,0 +1,31 @@
+.setting{
+    .content_detail{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .pass,.email,.avatar{
+        display: inline-block;
+        width: 40%;
+        height: 100%;
+        h3{
+            text-align: center;
+        }
+        
+    }
+    .pass{
+        margin-right: 5%;
+    }
+    .email{
+        margin-left: 5%;
+    }
+    .avatar{
+        text-align: center;
+    }
+    .detail-info{
+        text-align: center;
+        display: inline-block;
+        width: 40%;
+        height: 100%;
+    }
+}

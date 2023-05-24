@@ -3,7 +3,7 @@ import { Button, Modal, Form, Input, Space, message } from 'antd'
 import './index.css'
 import { useAppDispatch } from '../../../Hooks/storeHook'
 import { handleStatus } from '../../../store/ModelStatusSlice'
-import { getCaptchaReq, registerReq } from '../../../requests/api'
+import { checkEmailReq, checkUsernameReq, getCaptchaReq, registerReq } from '../../../requests/api'
 interface propsType {
   open: boolean,
   onCancel: any
@@ -52,14 +52,26 @@ const RegisterModel: React.FC<propsType> = (props) => {
           <Form.Item
             label="用户名"
             name="username"
-            rules={[{ required: true, message: '用户名不能为空' }]}
+            rules={[{ required: true, message: '用户名不能为空' }, () => ({
+              async validator(_, value) {
+                let res = await checkUsernameReq(value)
+                if (res.data) return Promise.resolve();
+                return Promise.reject(new Error('用户名已存在'));
+              },
+            })]}
           >
             <Input placeholder="请输入你的用户名" />
           </Form.Item>
           <Form.Item
             label="邮箱"
             name="email"
-            rules={[{ required: true, message: '邮箱不能为空' }, { pattern: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, message: '邮箱格式不正确' }]}
+            rules={[{ required: true, message: '邮箱不能为空' }, { pattern: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, message: '邮箱格式不正确' }, () => ({
+              async validator(_, value) {
+                let res = await checkEmailReq(value)
+                if (res.data) return Promise.resolve();
+                return Promise.reject(new Error('该邮箱已注册'));
+              },
+            })]}
           >
             <Input placeholder="请输入你的邮箱" onChange={(e) => setEmail(e.target.value)} />
           </Form.Item>
@@ -83,7 +95,14 @@ const RegisterModel: React.FC<propsType> = (props) => {
           <Form.Item
             label="再次输入密码"
             name="rePassword"
-            rules={[{ required: true, message: '密码不能为空' }, { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: '至少八个字符，至少一个字母和一个数字组成' }]}
+            rules={[{ required: true, message: '密码不能为空' }, ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('你输入的两个密码不匹配!'));
+              },
+            })]}
           >
             <Input.Password placeholder="请输入你的密码" />
           </Form.Item>

@@ -18,13 +18,14 @@ export default function Demo() {
                         msg={el.messageContent}
                         backgroundColor={'rgba(0, 0, 0, 0.3)'}
                         color={'white'}
+                        
                     />
                 )
             })
         }
     }, [bullet])
     useEffect(() => {
-        let s = new BulletScreen('.screen', { duration: 10,loopCount:'infinite' });
+        let s = new BulletScreen('.screen', { duration: 10,loopCount:'infinite',animateTimeFun:'ease-in-out' });
         setScreen(s);
         getMessageList()
     }, [])

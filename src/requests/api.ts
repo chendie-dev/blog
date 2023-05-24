@@ -19,3 +19,13 @@ export const registerReq=(params:registerParams):Promise<idRes>=>request.post('/
 export const getCaptchaReq=(params:{mail:string})=>request.post('/sms/captcha/send',params)
 //获取用户信息
 export const getUserReq = (): Promise<userRes> => request.post('/auth/getUserInfo')
+//更新用户信息
+export const updateUserInfoReq = (params: userInfoParams): Promise<idRes> => request.post('/auth/updateUserInfo', params)
+//更新邮箱
+export const updateEmailReq=(params:emailInfoParams): Promise<idRes> => request.post('/auth/updateEmail',params)
+//更新密码
+export const updatePasswordReq=(params:passwordInfoParams): Promise<idRes> => request.post('/auth/updatePassword',params)
+//判断邮箱是否合法
+export const checkEmailReq=(email:string):Promise<booleanRes>=>request.get(`/auth/checkEmail?email=${email}`)
+//判断用户名是否合法
+export const checkUsernameReq=(username:string):Promise<booleanRes>=>request.get(`/auth/checkUsername?username=${username}`)

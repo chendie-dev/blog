@@ -13,10 +13,10 @@ const instance=axios.create({
 //请求拦截器
 instance.interceptors.request.use(config=>{
     NProgress.start()
-    config.headers.token=localStorage.getItem('token')
+    config.headers.token=localStorage.getItem('usertoken')
     return config
 },err=>{
-    return Promise.reject(err)
+    return Promise.reject(err) 
 })
 //响应拦截器
 instance.interceptors.response.use(res=>{

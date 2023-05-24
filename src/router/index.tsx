@@ -6,6 +6,7 @@ const About=lazy(()=>import('../pages/About'))
 const Categories=lazy(()=>import('../pages/Categories'))
 const Tags=lazy(()=>import('../pages/Tags'))
 const ArticleList=lazy(()=>import('../pages/Article/ArticleList'))
+const Setting=lazy(()=>import('../pages/Setting'))
 const withLoading = (com: JSX.Element) => (
     <React.Suspense>
         {com}
@@ -47,6 +48,10 @@ const routes = [
     {
         path:'/tags/:id',
         element:withLoading(<ArticleList/>)
+    },
+    {
+        path:'/setting',
+        element:withLoading(<Setting/>)
     },
 ]
 export default routes

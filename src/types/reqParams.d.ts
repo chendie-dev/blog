@@ -8,8 +8,8 @@ interface defaultListType<T, T1> {
 type getMessageListParams = defaultListType<
     { createTime?: boolean },
     {
-        auditType: number|null,
-        messageContent?: string|null,
+        auditType: number | null,
+        messageContent?: string | null,
         messageId?: number
     }
 >
@@ -19,7 +19,7 @@ type getTagListParams = defaultListType<
     },
     {
         isDelete: boolean,
-        tagId?: string|null,
+        tagId?: string | null,
         tagName?: string
     }
 >
@@ -29,7 +29,7 @@ type getCategoryListParams = defaultListType<
     },
     {
         isDelete: boolean
-        categoryId?: string|null,
+        categoryId?: string | null,
         categoryName?: string,
     }
 >
@@ -42,14 +42,33 @@ type getArticleListParams = defaultListType<
         categoryId?: string | null,
         isDelete: boolean,
         tagIds?: string[] | null
-        articleStatus?:number|null
+        articleStatus?: number | null
     }
 >
-interface registerParams{
-    captcha:string ,
+interface registerParams {
+    captcha: string,
     email: string,
-    password:string ,
-    rePassword:string ,
+    password: string,
+    rePassword: string,
     username: string
-  }
-  
+}
+interface emailInfoParams {
+    captcha: string,
+    currentPassword: string,
+    email: string,
+    userId: string
+}
+interface userInfoParams {
+    avatarUrl?: string,
+    nickname?: string,
+    phoneNumber?: string,
+    sex?: string,
+    userId: string,
+    username?: string
+}
+interface passwordInfoParams {
+    currentPassword: string,
+    password: string,
+    rePassword: string,
+    userId: string
+}  

@@ -5,8 +5,8 @@ import LoginModel from '../../model/LoginModel'
 import RegisterModel from '../../model/RegisterModel'
 import SearchModel from '../../model/SearchModel'
 import './index.css'
-import { useNavigate } from 'react-router-dom'
-import { Avatar, Popover, Space } from 'antd'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { Avatar, Divider, Popover, Space } from 'antd'
 import { DownOutlined, HomeFilled, PlayCircleOutlined, UserOutlined } from '@ant-design/icons'
 import MyIcon from '../../MyIcon'
 import { useUserData, useUserDataDispatch } from '../../UserDataProvider'
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
     }
   }, [])
   useEffect(()=>{
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('usertoken')){
       userDispatch('getuser')
     }
     
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
     setImgUrl(userData.avatarUrl)
   },[userData])
   const logout=async ()=>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('usertoken')
     userDispatch('getuser')
     await logoutReq()
     setImgUrl('')
@@ -123,6 +123,7 @@ const Header: React.FC = () => {
               <Space>
                 <MyIcon type='icon-paper-full' />
                 关于
+                {/* <Navigate to={'/about'}/> */}
               </Space>
             </a>
           </div>
@@ -146,7 +147,9 @@ const Header: React.FC = () => {
               </div>) :
               (<div className="menus-item">
                 <Popover content={(<div>
-                  <p style={{ cursor: 'pointer' }} className='exit' onClick={()=>logout()}>退出</p>
+                  <p style={{ cursor: 'pointer' }} className='exit' onClick={()=>navigateTo('/setting')}><MyIcon type='icon-yonghu' style={{ marginRight: '10px' }} />个人中心</p>
+                  <Divider style={{margin:6}}/>
+                  <p style={{ cursor: 'pointer' }} className='exit' onClick={()=>logout()}><MyIcon type='icon-tuichu' style={{ marginRight: '10px' }} />退出登陆</p>
                 </div>)}>
                   <Avatar size="large" src={imgUrl} style={{ top: '-8px' }} icon={<UserOutlined />} />
                 </Popover>
