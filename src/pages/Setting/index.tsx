@@ -1,4 +1,4 @@
-import  { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './index.scss'
 import { Button, Col, Collapse, Divider, Form, Input, Radio, Row, Space, Upload, UploadFile, UploadProps, message } from 'antd'
 import Footer from '../../components/Layout/Footer'
@@ -10,24 +10,12 @@ import { checkUsernameReq, getCaptchaReq, updateEmailReq, updatePasswordReq, upd
 export default function Setting() {
   const [fileList, setFileList] = useState<UploadFile[]>([]);//已上传图片
   const [email, setEmail] = useState('')
-  const [useInfo, setUserInfo] = useState<userInfoParams>({ userId: '' })
   const userData = useUserData()
   const userDispatch = useUserDataDispatch()
   const [captchaBtnVal, setCaptchaBtnVal] = useState('发送验证码')
 
   useEffect(() => {
-    userDispatch('getuser')
-  }, [])
-  useLayoutEffect(() => {
     if (!userData.userId) return
-    setUserInfo({
-      userId: userData.userId,
-      username: userData.username,
-      avatarUrl: userData.avatarUrl,
-      nickname: userData.nickname,
-      phoneNumber: userData.phoneNumber,
-      sex: userData.sexEnum
-    })
     setFileList([{
       uid: userData.userId,
       name: 'avatar',
@@ -44,30 +32,12 @@ export default function Setting() {
     else {
       setFileList([file])
     }
-    if (file.status === 'done') setUserInfo((a) => ({ ...a, avatarUrl: file.response.data }))
   }
   //修改信息
-  const updateUserInfo = async () => {
-    if (useInfo.nickname && (useInfo.nickname.length < 2 || useInfo.nickname.length > 20) && useInfo.nickname !== '') {
-      message.error('姓名长度为2-20个字')
-      return
-    }
-    if (useInfo.username && (useInfo.username.length < 6 || useInfo.username.length > 20) && useInfo.username !== '') {
-      message.error('用户名长度为6-20个字')
-      return
-    }
-    if (useInfo.phoneNumber && useInfo.phoneNumber.length !== 11 && useInfo.phoneNumber !== '') {
-      message.error('手机号为11位')
-      return
-    }
-    if (useInfo.username && useInfo.username !== userData.username) {
-      let res = await checkUsernameReq(useInfo.username)
-      if (!res.data) {
-        message.error('用户名已存在')
-        return
-      }
-    }
-    let res = await updateUserInfoReq(useInfo)
+  const updateUserInfo = async (value: userInfoParams) => {
+    value.userId = userData.userId
+    value.avatarUrl = userData.avatarUrl
+    let res = await updateUserInfoReq(value)
     if (res.code !== 200) return
     message.success('保存成功')
     userDispatch('getuser')
@@ -137,6 +107,7 @@ export default function Setting() {
                       listType='picture-circle'
                       onChange={handleChange}
                       fileList={fileList}
+                      className='avatar'
                     >
                       {
                         fileList.length > 0 ? '' :
@@ -150,33 +121,52 @@ export default function Setting() {
                     labelCol={{ span: 4 }}
                     labelAlign='left'
                     layout='vertical'
+                    onFinish={updateUserInfo}
                   >
-                    <Form.Item label='真实姓名'
+                    <Form.Item
+                      label='真实姓名'
+                      name='nickname'
+                      initialValue={userData.nickname}
+                      rules={[{min:2,max:20,message:'姓名长度2-20个字'}]}
                     >
-                      <Input allowClear value={useInfo.nickname} onChange={(e) => setUserInfo((a) => ({ ...a, nickname: e.target.value.replaceAll(/\s*/g, "") }))} />
+                      <Input allowClear />
                     </Form.Item>
-                    <Form.Item label='用户名'>
-                      <Input allowClear value={useInfo.username} onChange={(e) => setUserInfo((a) => ({ ...a, username: e.target.value.replaceAll(/\s*/g, "") }))} />
+                    <Form.Item
+                      label='用户名'
+                      name='username'
+                      initialValue={userData.username}
+                      rules={[{min:6,max:20,message:'用户名在6-20个字'},()=>({
+                        async validator(_,value){
+                          let res=await checkUsernameReq(value)
+                          if(res.data)return Promise.resolve()
+                          return Promise.reject(new Error('用户名已存在'))
+                        }
+                      })]}
+                    >
+                      <Input allowClear />
                     </Form.Item>
-                    <Form.Item label='手机号'>
-                      <Input allowClear value={useInfo.phoneNumber} onChange={(e) => setUserInfo((a) => ({ ...a, phoneNumber: e.target.value.replaceAll(/\s*/g, "") }))} />
+                    <Form.Item
+                      label='手机号'
+                      name='phoneNumber'
+                      initialValue={userData.phoneNumber}
+                    >
+                      <Input allowClear />
                     </Form.Item>
                     {/* <Form.Item label='角色名'>
                   <Input allowClear disabled value={userData.roleName} />
                 </Form.Item> */}
-                  </Form>
-                  <Form
-                    colon={false}
-                  >
-                    <Form.Item label='性别'>
-                      <Radio.Group value={useInfo.sex} onChange={(e) => setUserInfo((a) => ({ ...a, sex: e.target.value }))} >
+                    <Form.Item label='性别'
+                      name='sex'
+                      initialValue={userData.sexEnum}
+                    >
+                      <Radio.Group  >
                         <Radio value={1}>男</Radio>
                         <Radio value={2}>女</Radio>
                         <Radio value={0}>保密</Radio>
                       </Radio.Group>
                     </Form.Item>
                     <Form.Item >
-                      <Button type="primary" htmlType="submit" onClick={updateUserInfo}>
+                      <Button type="primary" htmlType="submit">
                         保存
                       </Button>
                     </Form.Item>

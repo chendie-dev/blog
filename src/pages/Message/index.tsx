@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BulletScreen, { StyledBullet } from 'rc-bullets';
 import { addMessageReq, getMessageReq } from '../../requests/api';
 import { message } from 'antd';
 import './index.scss'
 
-export default function Demo() {
+export default function Message() {
     const [screen, setScreen] = useState<JSX.Element[]>([])
     const [bullet, setBullet] = useState<messageItemType[]>([]);
     const [isShow, setIsShow] = useState(0)

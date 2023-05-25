@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Modal } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { useAppDispatch } from '../../../Hooks/storeHook'
+import { useAppDispatch, useAppSelector } from '../../../Hooks/storeHook'
 import { handleStatus } from '../../../store/ModelStatusSlice'
 import './index.scss'
-import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../../requests/api'
+import { getArticleListReq } from '../../../requests/api'
 import { useNavigate } from 'react-router-dom'
 interface childProps {
     open: boolean,
-    onCancel: any
+    onCancel: any,
 }
 const SearchModel: React.FC<childProps> = (props) => {
 
@@ -52,8 +52,15 @@ const SearchModel: React.FC<childProps> = (props) => {
     }
     const [keyWord, setKeyWord] = useState('')
     const [articleList, setArticleList] = useState<articleItemType[]>([])
-    const navigeteTo=useNavigate()
-    const dispatch=useAppDispatch()
+    const navigeteTo = useNavigate()
+    const dispatch = useAppDispatch()
+    const { status } = useAppSelector((state) => ({
+        status: state.modelStatus.status
+    }))
+    useEffect(() => {
+        setArticleList([]);
+        setKeyWord('');
+    }, [status === 0])
     useEffect(() => {
         if (keyWord.replace(/\s*/g, "") !== '') {
             initArticle()
@@ -66,15 +73,15 @@ const SearchModel: React.FC<childProps> = (props) => {
         let res = await getArticleByAll(newkeyWord)
         let res1 = await getArticleByTitle(newkeyWord)
         let res2 = await getArticleByContent(newkeyWord)
-        let arr:articleItemType[]=[]
-        res.forEach(el=>{
-            if(!arr.find(el1=>el.articleId===el1.articleId))arr.push(el)
+        let arr: articleItemType[] = []
+        res.forEach(el => {
+            if (!arr.find(el1 => el.articleId === el1.articleId)) arr.push(el)
         })
-        res1.forEach(el=>{
-            if(!arr.find(el1=>el.articleId===el1.articleId))arr.push(el)
+        res1.forEach(el => {
+            if (!arr.find(el1 => el.articleId === el1.articleId)) arr.push(el)
         })
-        res2.forEach(el=>{
-            if(!arr.find(el1=>el.articleId===el1.articleId))arr.push(el)
+        res2.forEach(el => {
+            if (!arr.find(el1 => el.articleId === el1.articleId)) arr.push(el)
         })
         arr.forEach(el => {
             filterKeyWord(el)
@@ -105,7 +112,7 @@ const SearchModel: React.FC<childProps> = (props) => {
                         {
                             articleList.map(el => {
                                 return (
-                                    <li className="search-reslut" key={el.articleId}  onClick={()=>{navigeteTo(`/article/${el.articleId}`);setArticleList([]);dispatch(handleStatus({status:0}))}} >
+                                    <li className="search-reslut" key={el.articleId} onClick={() => { navigeteTo(`/article/${el.articleId}`); dispatch(handleStatus({ status: 0 })) }} >
                                         <a dangerouslySetInnerHTML={{ __html: el.articleTitle }} />
                                         <p className="search-reslut-content " dangerouslySetInnerHTML={{ __html: el.articleContent }} />
                                     </li>
@@ -116,7 +123,7 @@ const SearchModel: React.FC<childProps> = (props) => {
                     </ul>
                     {/* <!-- 搜索结果不存在提示 --> */}
                     {
-                        articleList.length === 0&&keyWord.replace(/\s*/g, "").length>0 ? <div style={{ fontSize: "0.875rem" }}>
+                        articleList.length === 0 && keyWord.replace(/\s*/g, "").length > 0 ? <div style={{ fontSize: "0.875rem" }}>
                             找不到您查询的内容：{keyWord}
                         </div> : ''
                     }

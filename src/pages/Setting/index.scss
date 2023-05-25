@@ -22,10 +22,13 @@
     .avatar{
         text-align: center;
     }
-    .detail-info{
-        text-align: center;
+    .detail-info,button{
         display: inline-block;
         width: 40%;
         height: 100%;
+        .avatar,button{
+            margin-left: 50%;
+            transform: translate(-50%);
+        }
     }
 }
