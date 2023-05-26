@@ -19,7 +19,6 @@ const SearchModel: React.FC<childProps> = (props) => {
             pageNum: 1,
             pageSize: 2,
             queryParam: {
-                isDelete: false,
                 articleContent: value,
                 articleTitle: value
             }
@@ -32,7 +31,6 @@ const SearchModel: React.FC<childProps> = (props) => {
             pageNum: 1,
             pageSize: 2,
             queryParam: {
-                isDelete: false,
                 articleTitle: value
             }
         })
@@ -44,7 +42,6 @@ const SearchModel: React.FC<childProps> = (props) => {
             pageNum: 1,
             pageSize: 2,
             queryParam: {
-                isDelete: false,
                 articleContent: value,
             }
         })

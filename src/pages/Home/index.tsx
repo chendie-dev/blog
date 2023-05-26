@@ -39,7 +39,6 @@ export default function Home() {
               pageNum: 1,
               pageSize: 1,
               queryParam: {
-                isDelete: false,
                 tagId: el1,
               }
             });
@@ -53,7 +52,6 @@ export default function Home() {
           pageNum: 1,
           pageSize: 1,
           queryParam: {
-            isDelete: false,
             categoryId: el.categoryId,
 
           }
@@ -76,8 +74,6 @@ export default function Home() {
       pageNum: currentPage,
       pageSize: 10,
       queryParam: {
-        isDelete: false,
-        articleStatus: 1
       }
     })
     if (res.code !== 200) return

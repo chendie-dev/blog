@@ -5,7 +5,6 @@ interface defaultResType<T> {
     traceId: string
 }
 interface messageItemType {
-    auditType: number,
     createTime: string,
     messageContent: string,
     messageId: number
@@ -19,7 +18,6 @@ interface articleItemType {
     articleContent: string,
     articleCoverUrl: string,
     articleId:string ,
-    articleStatus:number ,
     articleTitle: string,
     categoryId: string,
     createTime: string,

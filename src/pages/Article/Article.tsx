@@ -22,9 +22,7 @@ export default function Article() {
             pageNum: 1,
             pageSize: 1,
             queryParam: {
-                isDelete: false,
                 articleId: location.pathname.split('/')[2],
-                articleStatus: 1
             }
         })
         if (res.code !== 200) return
@@ -42,7 +40,6 @@ export default function Article() {
                             pageNum: 1,
                             pageSize: 1,
                             queryParam: {
-                                isDelete: false,
                                 tagId: el1,
                             }
                         });
@@ -56,7 +53,6 @@ export default function Article() {
                     pageNum: 1,
                     pageSize: 1,
                     queryParam: {
-                        isDelete: false,
                         categoryId: el.categoryId,
                     }
                 });

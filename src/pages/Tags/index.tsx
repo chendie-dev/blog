@@ -16,7 +16,6 @@ export default function Tags() {
             pageNum:1,
             pageSize:100,
             queryParam:{
-                isDelete:false
             }
         })
         if(res.code!==200)return

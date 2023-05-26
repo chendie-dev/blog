@@ -36,7 +36,6 @@ export default function Message() {
             pageNum: 1,
             pageSize: 100,
             queryParam: {
-                auditType: 2
             }
         })
         if (res.code !== 200) return

@@ -22,7 +22,7 @@ const LoginModel: React.FC<propsType> = (props) => {
             message.error('用户名/邮箱或密码错误')
             return
         }
-        localStorage.setItem('usertoken',res.data)
+        localStorage.setItem('token',res.data)
         dispatch(handleStatus({status:0}))
         userDispatch('getuser')
     };

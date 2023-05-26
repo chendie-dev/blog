@@ -1,5 +1,5 @@
 import { Card, Col, Divider, Row, Space } from 'antd'
-import React, { useEffect, useState } from 'react'
+import  { useState } from 'react'
 import Footer from '../../components/Layout/Footer'
 import './index.scss'
 import MyIcon from '../../components/MyIcon'
@@ -22,10 +22,8 @@ export default function ArticleList() {
       pageNum: currentPage,
       pageSize: 3,
       queryParam: {
-        isDelete: false,
         categoryId: type === 'categories' ? id : null,
         tagIds: type === 'categories' ? null : [id],
-        articleStatus: 1
       }
     })
     if (res.code !== 200) return
@@ -45,7 +43,6 @@ export default function ArticleList() {
               pageNum: 1,
               pageSize: 1,
               queryParam: {
-                isDelete: false,
                 tagId: el1,
               }
             });
@@ -59,7 +56,6 @@ export default function ArticleList() {
           pageNum: 1,
           pageSize: 1,
           queryParam: {
-            isDelete: false,
             categoryId: el.categoryId,
 
           }

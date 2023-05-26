@@ -58,9 +58,7 @@ function dispatchMiddleware(next: Dispatch<dataActionType>) {
                     queryParam: {
                         articleTitle: action.payload.queryParam.articleTitle,
                         categoryId: action.payload.queryParam.categoryId,
-                        isDelete: action.payload.queryParam.isDelete,
                         tagIds:action.payload.queryParam.tagIds,
-                        articleStatus:action.payload.queryParam.articleStatus
                     }
                 })
                 res.data.data = res.data.data.map(el => {

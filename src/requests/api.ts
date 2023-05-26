@@ -1,14 +1,14 @@
 import request from './index'
 //获取留言
-export const getMessageReq=(params:getMessageListParams):Promise<messageListRes>=>request.post('/sms/message/queryByPage',params)
+export const getMessageReq=(params:getMessageListParams):Promise<messageListRes>=>request.post('/sms/user/message/queryByPage',params)
 //添加留言
 export const addMessageReq=(params:{messageContent:string}):Promise<idRes>=>request.post('/sms/user/message/add',params)
 //获取标签分页
-export const getTagListReq = (params: getTagListParams): Promise<tagListRes> => request.post('/article/admin/tag/queryByPage', params)
+export const getTagListReq = (params: getTagListParams): Promise<tagListRes> => request.post('/article/user/tag/queryByPage', params)
 //获取分类分页
-export const getCategoryListReq = (params: getCategoryListParams): Promise<categoryListRes> => request.post('/article/admin/category/queryByPage', params)
+export const getCategoryListReq = (params: getCategoryListParams): Promise<categoryListRes> => request.post('/article/user/category/queryByPage', params)
 //获取文章
-export const getArticleListReq=(params:getArticleListParams):Promise<articleListRes>=>request.post('/article/body/queryByPage',params)
+export const getArticleListReq=(params:getArticleListParams):Promise<articleListRes>=>request.post('/article/user/body/queryByPage',params)
 //登入
 export const loginReq=(params:{password:string ,username:string }):Promise<logInRes>=>request.post('/auth/login',params)
 //登出

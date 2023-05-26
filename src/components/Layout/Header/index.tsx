@@ -39,7 +39,7 @@ const Header: React.FC = () => {
     }
   }, [])
   useEffect(()=>{
-    if(localStorage.getItem('usertoken')){
+    if(localStorage.getItem('token')){
       userDispatch('getuser')
     }
     
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
     setImgUrl(userData.avatarUrl)
   },[userData])
   const logout=async ()=>{
-    localStorage.removeItem('usertoken')
+    localStorage.removeItem('token')
     userDispatch('getuser')
     await logoutReq()
     setImgUrl('')
