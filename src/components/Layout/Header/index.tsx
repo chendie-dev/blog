@@ -42,7 +42,9 @@ const Header: React.FC = () => {
     if(localStorage.getItem('token')){
       userDispatch('getuser')
     }
-    
+    window.addEventListener('message', ({ data, origin }) => {
+      localStorage.setItem('AUTH-TOKEN', data)
+    })
   },[])
   useEffect(()=>{
     setImgUrl(userData.avatarUrl)
