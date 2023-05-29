@@ -1,7 +1,6 @@
 import axios from "axios";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-
 //创建axios实例
 const instance=axios.create({
     baseURL:"/api",
@@ -10,17 +9,30 @@ const instance=axios.create({
 //请求拦截器
 instance.interceptors.request.use(config=>{
     NProgress.start()
-    config.headers.token=localStorage.getItem('token')
+    config.headers.token=localStorage.getItem('user-token')
     return config
 },err=>{
     return Promise.reject(err) 
 })
 //响应拦截器
 instance.interceptors.response.use(res=>{
-    if(res.data.code===1017)localStorage.removeItem('token')
+    if(res.data.code===1017)localStorage.removeItem('user-token')
     if(res.headers.token){
-        localStorage.removeItem('token')
+        localStorage.removeItem('user-token')
         localStorage.setItem('token',res.headers.token)
+    }
+    if (res.headers.token||res.config.url?.split('/').find(el=>el==='login')==='/login') {
+        const src='http://localhost:3000/'
+        const iframe = document.createElement('iframe')
+        iframe.src = src
+        iframe.addEventListener('load', event => {
+            iframe.contentWindow!.postMessage(res.headers.token||res.data, src)
+        })
+        iframe.style.opacity='0'
+        document.body.append(iframe)
+        setTimeout(()=>{
+            document.body.removeChild(iframe)
+        },1000)
     }
     NProgress.done()
     return res.data

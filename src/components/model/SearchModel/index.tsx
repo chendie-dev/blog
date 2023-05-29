@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Modal } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/storeHook'
@@ -10,13 +10,14 @@ interface childProps {
     open: boolean,
     onCancel: any,
 }
-function throttle(fn:() => Promise<void>,wait:number){
-    let timer:any=null
-    return ()=>{
-        clearTimeout(timer)
-        timer=setTimeout(fn,wait)
+const useThrottle = (fn: () => Promise<void>, wait: number) => {
+    let timer = useRef<NodeJS.Timeout>()
+    return () => {
+        clearTimeout(timer.current)
+        timer.current = setTimeout(fn, wait)
     }
 }
+
 const SearchModel: React.FC<childProps> = (props) => {
 
     const getArticleByAll = async (value: string) => {
@@ -53,9 +54,9 @@ const SearchModel: React.FC<childProps> = (props) => {
         })
         return res.data.data
     }
-    const [keyWord, setKeyWord] = useState<{value:string,flag:boolean}>({value:'',flag:true})
+    const [keyWord, setKeyWord] = useState<{ value: string, flag: boolean }>({ value: '', flag: true })
     const [articleList, setArticleList] = useState<articleItemType[]>([])
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
     const navigeteTo = useNavigate()
     const dispatch = useAppDispatch()
     const { status } = useAppSelector((state) => ({
@@ -63,17 +64,17 @@ const SearchModel: React.FC<childProps> = (props) => {
     }))
     useEffect(() => {
         setArticleList([]);
-        setKeyWord({value:'',flag:true});
+        setKeyWord({ value: '', flag: true });
     }, [status === 0])
     useEffect(() => {
-        if (keyWord.value.replace(/\s*/g, "") !== ''&&keyWord.flag) {
+        if (keyWord.value.replace(/\s*/g, "") !== '' && keyWord.flag) {
             setLoading(true)
-            func()
+            initArticle()
         } else {
             setArticleList([])
         }
     }, [keyWord])
-    const initArticle = async () => {
+    const initArticle = useThrottle(async () => {
         let newkeyWord = keyWord.value.replace(/\s*/g, "")
         let res = await getArticleByAll(newkeyWord)
         let res1 = await getArticleByTitle(newkeyWord)
@@ -93,8 +94,7 @@ const SearchModel: React.FC<childProps> = (props) => {
         })
         setArticleList(arr)
         setLoading(false)
-    }
-    const func=throttle(initArticle,1500)
+    }, 1500)
 
     const filterKeyWord = (article: articleItemType) => {
         let re = new RegExp(keyWord.value, "g")
@@ -114,9 +114,9 @@ const SearchModel: React.FC<childProps> = (props) => {
                     <SearchOutlined style={{ fontSize: '20px', color: '#666' }} />
                     <input v-model="keywords" placeholder="输入文章标题或内容..."
                         value={keyWord.value}
-                        onCompositionStart={() => setKeyWord((last)=>({...last,flag:false}))}
-                        onCompositionEnd={() => setKeyWord((last)=>({...last,flag:true}))}
-                        onChange={(e) => setKeyWord((last)=>({...last,value:e.target.value}))}
+                        onCompositionStart={() => setKeyWord((last) => ({ ...last, flag: false }))}
+                        onCompositionEnd={() => setKeyWord((last) => ({ ...last, flag: true }))}
+                        onChange={(e) => setKeyWord((last) => ({ ...last, value: e.target.value }))}
                     />
                 </div>
                 <div className="search-result-wrapper">
@@ -136,7 +136,7 @@ const SearchModel: React.FC<childProps> = (props) => {
                     </ul>
                     {/* <!-- 搜索结果不存在提示 --> */}
                     {
-                        !loading&&keyWord.flag&&articleList.length === 0 && keyWord.value.replace(/\s*/g, "").length > 0 ? <div style={{ fontSize: "0.875rem" }}>
+                        !loading && keyWord.flag && articleList.length === 0 && keyWord.value.replace(/\s*/g, "").length > 0 ? <div style={{ fontSize: "0.875rem" }}>
                             找不到您查询的内容：{keyWord.value}
                         </div> : ''
                     }

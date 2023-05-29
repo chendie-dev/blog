@@ -43,7 +43,8 @@ const Header: React.FC = () => {
       userDispatch('getuser')
     }
     window.addEventListener('message', ({ data, origin }) => {
-      localStorage.setItem('AUTH-TOKEN', data)
+      // console.log('blog',typeof(data),origin)
+      if(origin==='http://localhost:3000')localStorage.setItem('user-token', data)
     })
   },[])
   useEffect(()=>{
