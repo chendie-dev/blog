@@ -1,6 +1,7 @@
 import { Col, Row, Avatar, Divider, Card, Space } from 'antd';
 import { DownOutlined, GithubFilled, LineChartOutlined, QqCircleFilled } from '@ant-design/icons'
 import EasyTyper from "easy-typer-js";
+import LazyLoad from 'react-lazyload';
 import touxiangImg from '../../images/touxiang.png'
 import './index.scss'
 import { useEffect, useState } from 'react';
@@ -127,7 +128,11 @@ export default function Home() {
             {data.map(el => {
               return (
                 <Card bordered={false} className="card animated zoomIn article-card" key={el.articleId} onClick={() => navigateTo(`/article/${el.articleId}`)} >
-                  <img src={el.articleCoverUrl} alt="" />
+                  <LazyLoad
+                    height='100%'
+                  >
+                    <img src={el.articleCoverUrl} alt="" />
+                  </LazyLoad>
                   <div className="breif-intro">
                     <p className="breif-intro_title">{el.articleTitle}</p>
                     <div className='article-detail'>

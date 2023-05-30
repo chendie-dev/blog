@@ -39,12 +39,12 @@ const Header: React.FC = () => {
     }
   }, [])
   useEffect(()=>{
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('user-token')){
       userDispatch('getuser')
     }
     window.addEventListener('message', ({ data, origin }) => {
-      // console.log('blog',typeof(data),origin)
-      if(origin==='http://localhost:3000')localStorage.setItem('user-token', data)
+      console.log('user',data)
+      if(origin==='http://admin.ddgotxdy.top')localStorage.setItem('user-token', data)
     })
   },[])
   useEffect(()=>{

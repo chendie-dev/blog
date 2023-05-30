@@ -4,7 +4,7 @@
 declare module 'react-barrage';
 declare module 'rc-bullets'
 declare module 'md-editor-rt';
-
+declare module 'react-lazyload'
 declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
