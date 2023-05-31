@@ -29,3 +29,13 @@ export const updatePasswordReq=(params:passwordInfoParams): Promise<idRes> => re
 export const checkEmailReq=(email:string):Promise<booleanRes>=>request.get(`/auth/checkEmail?email=${email}`)
 //判断用户名是否合法
 export const checkUsernameReq=(username:string):Promise<booleanRes>=>request.get(`/auth/checkUsername?username=${username}`)
+//关于我
+export const aboutMeReq=():Promise<aboutMeRes>=>request.post('/website/user/aboutMe/query')
+//添加评论
+export const addCommentReq=(params:addCommentParams):Promise<idRes>=>request.post('/sms/user/comment/add',params)
+//删除评论
+export const deleteCommentReq=(params:string[]):Promise<idRes>=>request.delete('/sms/user/comment/delete',{data:params})
+//查询评论
+export const getCommentListReq=(params:getCommentListParams):Promise<commentListRes>=>request.post('/sms/user/comment/queryTreeByPage',params)
+//查询用户信息id
+export const getUserInfoByIdReq=(userId:string):Promise<userInfoByIdRes>=>request.get(`/auth/user/getUserInfo/${userId}`)

@@ -4,7 +4,12 @@ interface defaultListType<T, T1> {
     pageSize: number,
     queryParam: T1
 }
-
+interface addCommentParams {
+    articleId: string,
+    commentContent: string,
+    parentId?: string | null,
+    replyUserId?: string | null
+}
 type getMessageListParams = defaultListType<
     { createTime?: boolean },
     {
@@ -38,6 +43,12 @@ type getArticleListParams = defaultListType<
         articleTitle?: string | null,
         categoryId?: string | null,
         tagIds?: string[] | null
+    }
+>
+type getCommentListParams = defaultListType<
+    { createTime?: boolean },
+    {
+        articleId: string
     }
 >
 interface registerParams {

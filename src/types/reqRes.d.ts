@@ -17,7 +17,7 @@ interface tagItemType {
 interface articleItemType {
     articleContent: string,
     articleCoverUrl: string,
-    articleId:string ,
+    articleId: string,
     articleTitle: string,
     categoryId: string,
     createTime: string,
@@ -40,13 +40,38 @@ interface userItemType {
     userId: string,
     username: string
 }
-
+interface commentItemType {
+    commentContent: string,
+    commentId: string,
+    createTime: string,
+    userId: string,
+    replyUserId: string,
+    children: []
+}
+interface userInfoByIdType {
+    avatarUrl: string,
+    userId: string,
+    username: string
+}
+interface newComentItemType{
+    commentContent: string,
+    commentId: string,
+    createTime: string,
+    userId: string,
+    replyUserId: string,
+    children: newComentItemType[]
+    userInfo:userInfoByIdType|undefined,
+    replyUserInfo:userInfoByIdType|undefined
+}
 type idRes = defaultResType<{ id: string }>
 type messageListRes = defaultResType<{ data: messageItemType[], totalPage: number }>
-type articleListRes = defaultResType<{data:articleItemType[], totalPage: number }>
+type articleListRes = defaultResType<{ data: articleItemType[], totalPage: number }>
 type tagListRes = defaultResType<{ data: tagItemType[], totalPage: number }>
 type categoryListRes = defaultResType<{ data: categoryItemType[], totalPage: number }>
+type commentListRes = defaultResType<{ data: newComentItemType[], totalPage: number }>
 type logInRes = defaultResType<string>
-type logOutRes=defaultResType<null>
-type userRes=defaultResType<userItemType>
-type booleanRes=defaultResType<boolean>
+type logOutRes = defaultResType<null>
+type userRes = defaultResType<userItemType>
+type booleanRes = defaultResType<boolean>
+type aboutMeRes = defaultResType<string>
+type userInfoByIdRes = defaultResType<userInfoByIdType>

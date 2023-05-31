@@ -4,7 +4,7 @@ import Footer from '../../components/Layout/Footer'
 import './index.scss'
 import MyIcon from '../../components/MyIcon'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requests/api'
+import { getArticleListReq, getCategoryListReq, getCommentListReq, getTagListReq } from '../../requests/api'
 import { InfiniteScroll } from 'antd-mobile'
 import { FormatData } from '../../Hooks/formatData'
 export default function ArticleList() {
@@ -32,6 +32,7 @@ export default function ArticleList() {
     initArticleList(res)
     setHasMore(res.data.data.length > 0)
   }
+  
   const initArticleList = async (res: articleListRes) => {
     let articleListContext1: articleListRes = JSON.parse(JSON.stringify(res))
     let articleList = await Promise.all(
