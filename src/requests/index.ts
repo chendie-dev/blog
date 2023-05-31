@@ -1,6 +1,7 @@
 import axios from "axios";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import globalConstant from "../utils/globalConstant";
 //创建axios实例
 const instance=axios.create({
     baseURL:"/api",
@@ -21,8 +22,8 @@ instance.interceptors.response.use(res=>{
         localStorage.removeItem('user-token')
         localStorage.setItem('user-token',res.headers.token)
     }
-    if (res.headers.token||res.config.url?.split('/').find(el=>el==='login')==='/login') {
-        const src='http://admin.ddgotxdy.top/'
+    if (res.headers.token||res.config.url?.split('/').find(el=>el==='login')==='login') {
+        const src=globalConstant().targetUrl
         const iframe = document.createElement('iframe')
         iframe.src = src
         iframe.addEventListener('load', event => {

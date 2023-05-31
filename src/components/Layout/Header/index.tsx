@@ -11,6 +11,7 @@ import { DownOutlined, HomeFilled, PlayCircleOutlined, UserOutlined } from '@ant
 import MyIcon from '../../MyIcon'
 import { useUserData, useUserDataDispatch } from '../../UserDataProvider'
 import { logoutReq } from '../../../requests/api'
+import globalConstant from '../../../utils/globalConstant'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
   const navigateTo = useNavigate()
@@ -43,8 +44,8 @@ const Header: React.FC = () => {
       userDispatch('getuser')
     }
     window.addEventListener('message', ({ data, origin }) => {
-      console.log('user',data)
-      if(origin==='http://admin.ddgotxdy.top')localStorage.setItem('user-token', data)
+      // console.log('user',data,origin)
+      if(origin===globalConstant().sourceUrl)localStorage.setItem('user-token', data)
     })
   },[])
   useEffect(()=>{
