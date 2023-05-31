@@ -51,7 +51,7 @@ const Header: React.FC = () => {
     setImgUrl(userData.avatarUrl)
   },[userData])
   const logout=async ()=>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('user-token')
     userDispatch('getuser')
     await logoutReq()
     setImgUrl('')

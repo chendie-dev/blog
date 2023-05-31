@@ -19,7 +19,7 @@ instance.interceptors.response.use(res=>{
     if(res.data.code===1017)localStorage.removeItem('user-token')
     if(res.headers.token){
         localStorage.removeItem('user-token')
-        localStorage.setItem('token',res.headers.token)
+        localStorage.setItem('user-token',res.headers.token)
     }
     if (res.headers.token||res.config.url?.split('/').find(el=>el==='login')==='/login') {
         const src='http://admin.ddgotxdy.top/'
