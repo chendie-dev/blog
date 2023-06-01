@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './index.scss'
 import { Card, Col, Row } from 'antd'
-import Footer from '../../components/Layout/Footer'
 import { getCategoryListReq } from '../../requests/api'
 import { useNavigate } from 'react-router-dom'
+import { usePageContext } from '../../components/PageDataProvider'
 export default function Categories() {
   const [categoriesList, setCategoriesList] = useState<categoryItemType[]>([])
   const navigateTo=useNavigate()
+  const pages=usePageContext()
+
   useEffect(() => {
     getCategories()
   }, [])
@@ -24,8 +26,8 @@ export default function Categories() {
   if(categoriesList.length==0)return (<></>)
   else return (
     <div className='categories'>
-      {/* style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} */}
-      <div className="banner"   >
+      
+      <div className="banner" style={{ background: `url(${pages.categoryPageUrl}) center center / cover no-repeat` }}  >
         <div className="banner-detail">
           <h1 className="banner-title">分类</h1>
         </div>
@@ -46,7 +48,6 @@ export default function Categories() {
           </Card>
         </Col>
       </Row>
-      <Footer />
     </div >
   )
 }

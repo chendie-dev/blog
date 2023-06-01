@@ -12,6 +12,7 @@ import MyIcon from '../../MyIcon'
 import { useUserData, useUserDataDispatch } from '../../UserDataProvider'
 import { logoutReq } from '../../../requests/api'
 import globalConstant from '../../../utils/globalConstant'
+import { usePageContext, usePageDispatch } from '../../PageDataProvider'
 const Header: React.FC = () => {
   const [navClass, setNavClass] = useState('nav animated slideInDown')
   const navigateTo = useNavigate()
@@ -22,7 +23,10 @@ const Header: React.FC = () => {
   const userData=useUserData()
   const userDispatch=useUserDataDispatch()
   const [imgUrl,setImgUrl]=useState('')
+  const pages=usePageContext()
+  const pageDisPatch=usePageDispatch()
   useEffect(() => {
+    pageDisPatch({type:'getpage'})
     const scroll = () => {
       let scrollTop =
         window.pageYOffset ||
@@ -60,7 +64,7 @@ const Header: React.FC = () => {
   return (
     <>
       <header className={navClass}>
-        <span className="author">网站作者</span>
+        <span className="author">{pages.authorName}</span>
         <div className="menus">
           <div className="menus-item">
             <a className="menu-btn" onClick={() => dispatch(handleStatus({ status: 1 }))} >

@@ -40,6 +40,18 @@ interface userItemType {
     userId: string,
     username: string
 }
+interface pageType {
+    authorUrl: string,
+    authorName: string,
+    briefIntroduction: string,
+    githubUrl: string,
+    qqUrl: string,
+    homePageUrl: string,
+    messagePageUrl: string,
+    categoryPageUrl: string,
+    tagPageUrl: string,
+    aboutMePageUrl: string
+}
 interface commentItemType {
     commentContent: string,
     commentId: string,
@@ -75,3 +87,4 @@ type userRes = defaultResType<userItemType>
 type booleanRes = defaultResType<boolean>
 type aboutMeRes = defaultResType<string>
 type userInfoByIdRes = defaultResType<userInfoByIdType>
+type getPageRes = defaultResType<pageType>

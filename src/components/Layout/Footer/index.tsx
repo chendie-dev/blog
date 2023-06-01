@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.css'
 export default function Footer() {
+  var winHeight = window.innerHeight;
+  const [height, setHeight] = useState(document.body.scrollHeight)
+  useEffect(() => {
+    setHeight(document.body.scrollHeight)
+  }, [document.body.scrollHeight])
   return (
-    <div className="footer-wrap">
+    <div className={winHeight-height<10?'footer-wrap':'footer-wrap fixed-bottom'}>
       <div>
-        ©2022 -
-        2023 By
-        网站作者
+        ©2023-
       </div>
       <a href="https://beian.miit.gov.cn/" target="_blank">
-        备案号
+        蜀ICP备2022012342号-1
       </a>
     </div>
   )

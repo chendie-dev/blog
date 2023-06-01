@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './index.scss'
 import { Button, Col, Collapse, Divider, Form, Input, Radio, Row, Space, Upload, UploadFile, UploadProps, message } from 'antd'
-import Footer from '../../components/Layout/Footer'
 import { PlusOutlined } from '@ant-design/icons'
 import ImgCrop from 'antd-img-crop'
 import { useUserData, useUserDataDispatch } from '../../components/UserDataProvider'
@@ -280,7 +279,6 @@ export default function Setting() {
           </Collapse>
         </Col>
       </Row>
-      <Footer />
     </div >
   )
 }

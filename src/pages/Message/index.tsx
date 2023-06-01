@@ -3,12 +3,14 @@ import BulletScreen, { StyledBullet } from 'rc-bullets';
 import { addMessageReq, getMessageReq } from '../../requests/api';
 import { message } from 'antd';
 import './index.scss'
+import { usePageContext } from '../../components/PageDataProvider';
 
 export default function Message() {
     const [screen, setScreen] = useState<JSX.Element[]>([])
     const [bullet, setBullet] = useState<messageItemType[]>([]);
     const [isShow, setIsShow] = useState(0)
     const [messageVal, setMessageVal] = useState('')
+    const pages=usePageContext()
     useEffect(() => {
         if (bullet) {
             bullet.forEach(el => {
@@ -25,7 +27,7 @@ export default function Message() {
         }
     }, [bullet])
     useEffect(() => {
-        let s = new BulletScreen('.screen', { duration: 10,loopCount:'infinite',animateTimeFun:'ease-in-out' });
+        let s = new BulletScreen('.screen', { duration: 10,loopCount:'infinite',animateTimeFun:'ease-in' });
         setScreen(s);
         getMessageList()
     }, [])
@@ -54,7 +56,7 @@ export default function Message() {
     }
     return (
         <>
-            <div className="homePage">
+            <div className="homePage" style={{background: `url('${pages.messagePageUrl}') center center / cover no-repeat`}}>
                 <div className="screen">
                 </div>
             </div>

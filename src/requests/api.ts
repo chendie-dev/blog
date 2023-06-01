@@ -39,3 +39,5 @@ export const deleteCommentReq=(params:string[]):Promise<idRes>=>request.delete('
 export const getCommentListReq=(params:getCommentListParams):Promise<commentListRes>=>request.post('/sms/user/comment/queryTreeByPage',params)
 //查询用户信息id
 export const getUserInfoByIdReq=(userId:string):Promise<userInfoByIdRes>=>request.get(`/auth/user/getUserInfo/${userId}`)
+//查询page
+export const getPagesReq=():Promise<getPageRes>=>request.post('/website/user/page/query')

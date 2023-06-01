@@ -6,6 +6,7 @@ import { handleStatus } from '../../../store/ModelStatusSlice'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { loginReq } from '../../../requests/api'
 import { useUserDataDispatch } from '../../UserDataProvider'
+import MyIcon from '../../MyIcon'
 interface propsType {
     open: boolean,
     onCancel: any
@@ -63,21 +64,22 @@ const LoginModel: React.FC<propsType> = (props) => {
                         {/* <span  style={{cursor:'pointer'}} onClick={()=>dispatch(handleStatus({status:4}))} className="float-right">忘记密码?</span> */}
                     </div>
                     {/* <!-- 三方登陆-- > */}
-                    {/* <div >
+                    <div >
                         <div className="social-login-title">社交账号登录</div>
                         <div className="social-login-wrapper">
-                            <a
+                            {/* <a
                                 className="mr-3 iconfont iconweibo"
                                 style={{ color: "#e05244" }}
 
-                            />
-                            <a
+                            /> */}
+                            {/* <a
                                 className="iconfont iconqq"
                                 style={{ color: "#00AAEE" }}
 
-                            />
+                            /> */}
+                            <MyIcon type='icon-QQ-circle-fill'style={{ color: "#00AAEE" }}/>
                         </div>
-                    </div> */}
+                    </div>
                 </div >
             </div >
         </Modal >

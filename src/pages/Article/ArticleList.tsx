@@ -1,12 +1,12 @@
 import { Card, Col, Divider, Row, Space } from 'antd'
 import  { useState } from 'react'
-import Footer from '../../components/Layout/Footer'
 import './index.scss'
 import MyIcon from '../../components/MyIcon'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getArticleListReq, getCategoryListReq, getCommentListReq, getTagListReq } from '../../requests/api'
 import { InfiniteScroll } from 'antd-mobile'
 import { FormatData } from '../../Hooks/formatData'
+import { usePageContext } from '../../components/PageDataProvider'
 export default function ArticleList() {
   const location = useLocation()
   const id = location.pathname.split('/')[2]
@@ -15,6 +15,7 @@ export default function ArticleList() {
   const [articleList, setArticleList] = useState<articleItemType[]>([])
   const [hasMore, setHasMore] = useState(true)//无限刷新是否还有更多
   const [currentPage, setCurrentPage] = useState(1)
+  const pages=usePageContext()
   const navigateTo = useNavigate()
   const getArticleList = async () => {
     let res = await getArticleListReq({
@@ -32,6 +33,7 @@ export default function ArticleList() {
     initArticleList(res)
     setHasMore(res.data.data.length > 0)
   }
+  
   
   const initArticleList = async (res: articleListRes) => {
     let articleListContext1: articleListRes = JSON.parse(JSON.stringify(res))
@@ -71,8 +73,8 @@ export default function ArticleList() {
   return (
     <div>
       <div className='article-list'>
-        {/* style={{ background: `url(${data.articleCoverUrl}) center center / cover no-repeat` }} */}
-        <div className="banner"   >
+        
+        <div className="banner" style={{ background: `url(${pages.categoryPageUrl}) center center / cover no-repeat` }}  >
           <div className="banner-detail">
             <h1 className="banner-title">{type === 'tags' ? '标签' : '分类'}-{name}</h1>
           </div>
@@ -123,7 +125,6 @@ export default function ArticleList() {
             <InfiniteScroll loadMore={getArticleList} hasMore={hasMore} style={{ width: '100%' }} />
           </Col>
         </Row >
-        <Footer />
       </div >
     </div >
   )

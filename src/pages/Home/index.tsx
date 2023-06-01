@@ -5,12 +5,12 @@ import LazyLoad from 'react-lazyload';
 import touxiangImg from '../../images/touxiang.png'
 import './index.scss'
 import { useEffect, useState } from 'react';
-import Footer from '../../components/Layout/Footer';
 import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requests/api';
 import { FormatData } from '../../Hooks/formatData';
 import MyIcon from '../../components/MyIcon';
 import { InfiniteScroll } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
+import { usePageContext, usePageDispatch } from '../../components/PageDataProvider';
 
 
 export default function Home() {
@@ -28,6 +28,8 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState<articleItemType[]>([])//无限刷新查询分类数据
   const navigateTo = useNavigate()
+  const pages=usePageContext()
+  // const pageDisPatch=usePageDispatch()
   const initArticleList = async (res: articleListRes) => {
     let articleListContext1: articleListRes = JSON.parse(JSON.stringify(res))
     let markdownIt = require('markdown-it')()
@@ -84,6 +86,7 @@ export default function Home() {
   }
   useEffect(() => {
     document.title = '首页'
+    // pageDisPatch({type:'getpage'})
     fetch("https://v1.hitokoto.cn?c=i")
       .then(res => {
         return res.json();
@@ -109,10 +112,11 @@ export default function Home() {
   }
   return (
     <div className='home'>
-      <div className="home-banner" >
+      <div className="home-banner" style={{background:`url('${pages.homePageUrl}') center center / cover no-repeat`}}  >
+      
         <div className="banner-container animated zoomIn">
           <h1 className="blog-title animated zoomIn">
-            个人博客
+            {pages.authorName}
           </h1>
           <div className="blog-intro">
             {obj.output} <span className="easy-typed-cursor">|</span>
@@ -160,40 +164,40 @@ export default function Home() {
           <Space direction="vertical" size="middle" style={{ display: 'flex' }} className='right-card'>
             <Card bordered={false} className='animated zoomIn '>
               <div className="author-wrapper">
-                <Avatar size={110} src={touxiangImg} className="author-avatar" />
+                <Avatar size={110} src={pages.authorUrl} className="author-avatar" />
 
                 <div style={{ fontSize: '1.375rem', marginTop: '0.625rem' }}>
-                  网站作者
+                  {pages.authorName}
                 </div>
                 <div style={{ fontSize: '0.875rem' }}>
-                  网站简介
+                  {pages.briefIntroduction}
                 </div>
                 <div className="blog-info-wrapper">
                   <div className="blog-info-data">
                     <div style={{ fontSize: "0.875em" }}>文章</div>
                     <div style={{ fontSize: "1.25em" }}>
-                      1
+                      10
                     </div>
                   </div>
                   <div className="blog-info-data">
                     <div style={{ fontSize: "0.875em" }}>分类</div>
                     <div style={{ fontSize: "1.25em" }}>
-                      1
+                      15
                     </div>
                   </div>
                   <div className="blog-info-data">
                     <div style={{ fontSize: "0.875em" }}>标签</div>
-                    <div style={{ fontSize: "1.25em" }}>1</div>
+                    <div style={{ fontSize: "1.25em" }}>10</div>
                   </div>
                 </div>
                 <Divider style={{ margin: '10px 0' }} />
                 <div className="card-info-social">
-                  <QqCircleFilled className="mr-5" style={{ marginRight: '20px', fontSize: 24 }} />
-                  <GithubFilled className="mr-5" style={{ fontSize: 24 }} />
+                  <QqCircleFilled className="mr-5" style={{ marginRight: '20px', fontSize: 24 }} onClick={()=>window.location.href=`${pages.qqUrl}`} />
+                  <GithubFilled className="mr-5" style={{ fontSize: 24 }} onClick={()=>window.location.href=`${pages.githubUrl}`} />
                 </div>
               </div>
             </Card>
-            <Card bordered={false} className='animated zoomIn'>
+            {/* <Card bordered={false} className='animated zoomIn'>
               <div>
                 <LineChartOutlined />
                 网站资讯
@@ -208,11 +212,10 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-            </Card>
+            </Card> */}
           </Space>
         </Col>
       </Row>
-      <Footer />
     </div>
 
   );
