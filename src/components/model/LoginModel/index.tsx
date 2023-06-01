@@ -77,7 +77,7 @@ const LoginModel: React.FC<propsType> = (props) => {
                                 style={{ color: "#00AAEE" }}
 
                             /> */}
-                            <MyIcon type='icon-QQ-circle-fill'style={{ color: "#00AAEE" }}/>
+                            <MyIcon onClick={()=>{window.location.href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1812805089&website=www.oicqzone.com"}} type='icon-QQ-circle-fill'style={{ color: "#00AAEE" }}/>
                         </div>
                     </div>
                 </div >

@@ -27,7 +27,6 @@ export default function App() {
       <Header />
       {BeforeRouterEnter()}
       <BackTop />
-      <Footer/>
     </>
   )
 }

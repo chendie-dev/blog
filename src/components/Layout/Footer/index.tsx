@@ -7,7 +7,7 @@ export default function Footer() {
     setHeight(document.body.scrollHeight)
   }, [document.body.scrollHeight])
   return (
-    <div className={winHeight-height<10?'footer-wrap':'footer-wrap fixed-bottom'}>
+    <div className={winHeight-height<30?'footer-wrap':'footer-wrap fixed-bottom'}>
       <div>
         ©2023-
       </div>

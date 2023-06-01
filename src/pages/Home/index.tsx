@@ -2,7 +2,6 @@ import { Col, Row, Avatar, Divider, Card, Space } from 'antd';
 import { DownOutlined, GithubFilled, LineChartOutlined, QqCircleFilled } from '@ant-design/icons'
 import EasyTyper from "easy-typer-js";
 import LazyLoad from 'react-lazyload';
-import touxiangImg from '../../images/touxiang.png'
 import './index.scss'
 import { useEffect, useState } from 'react';
 import { getArticleListReq, getCategoryListReq, getTagListReq } from '../../requests/api';
@@ -11,6 +10,7 @@ import MyIcon from '../../components/MyIcon';
 import { InfiniteScroll } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import { usePageContext, usePageDispatch } from '../../components/PageDataProvider';
+import Footer from '../../components/Layout/Footer';
 
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState<articleItemType[]>([])//无限刷新查询分类数据
   const navigateTo = useNavigate()
-  const pages=usePageContext()
+  const pages = usePageContext()
   // const pageDisPatch=usePageDispatch()
   const initArticleList = async (res: articleListRes) => {
     let articleListContext1: articleListRes = JSON.parse(JSON.stringify(res))
@@ -112,8 +112,8 @@ export default function Home() {
   }
   return (
     <div className='home'>
-      <div className="home-banner" style={{background:`url('${pages.homePageUrl}') center center / cover no-repeat`}}  >
-      
+      <div className="home-banner" style={{ background: `url('${pages.homePageUrl}') center center / cover no-repeat` }}  >
+
         <div className="banner-container animated zoomIn">
           <h1 className="blog-title animated zoomIn">
             {pages.authorName}
@@ -192,8 +192,8 @@ export default function Home() {
                 </div>
                 <Divider style={{ margin: '10px 0' }} />
                 <div className="card-info-social">
-                  <QqCircleFilled className="mr-5" style={{ marginRight: '20px', fontSize: 24 }} onClick={()=>window.location.href=`${pages.qqUrl}`} />
-                  <GithubFilled className="mr-5" style={{ fontSize: 24 }} onClick={()=>window.location.href=`${pages.githubUrl}`} />
+                  <QqCircleFilled className="mr-5" style={{ marginRight: '20px', fontSize: 24 }} onClick={() => window.location.href = `${pages.qqUrl}`} />
+                  <GithubFilled className="mr-5" style={{ fontSize: 24 }} onClick={() => window.location.href = `${pages.githubUrl}`} />
                 </div>
               </div>
             </Card>
@@ -216,6 +216,7 @@ export default function Home() {
           </Space>
         </Col>
       </Row>
+      <Footer />
     </div>
 
   );
