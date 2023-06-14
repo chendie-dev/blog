@@ -5,7 +5,6 @@ import router from './router'
 import Header from './components/Layout/Header';
 import BackTop from './components/BackTop';
 import { message } from 'antd';
-import Footer from './components/Layout/Footer';
 function BeforeRouterEnter() {
   let outlet = useRoutes(router)
   const location = useLocation()

@@ -131,12 +131,14 @@ export default function Home() {
           <Space className="aticle-list" direction="vertical" size="middle" style={{ display: 'flex' }}>
             {data.map(el => {
               return (
-                <Card bordered={false} className="card animated zoomIn article-card" key={el.articleId} onClick={() => navigateTo(`/article/${el.articleId}`)} >
-                  <LazyLoad
-                    height='100%'
-                  >
-                    <img src={el.articleCoverUrl} alt="" />
-                  </LazyLoad>
+                <Card bordered={false} className="card animated zoomIn " key={el.articleId} onClick={() => navigateTo(`/article/${el.articleId}`)} >
+                  {
+                    el.articleCoverUrl ? 
+                    <LazyLoad>
+                      <img src={el.articleCoverUrl} alt="" />
+                     </LazyLoad> 
+                    : ''
+                  }
                   <div className="breif-intro">
                     <p className="breif-intro_title">{el.articleTitle}</p>
                     <div className='article-detail'>
